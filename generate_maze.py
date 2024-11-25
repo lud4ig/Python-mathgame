@@ -168,9 +168,3 @@ def place_perimeter():
         for x in range(width):
             if x == 0 or x == width - 1 or y == 0 or y == height - 1:
                 maze[y][x] = 'T'
-
-#generate_maze()
-#ensure_connected()
-#start_x, start_y, end_x, end_y = place_start_and_end()
-#place_s_and_h(start_x, start_y, end_x, end_y)
-#place_perimeter()
