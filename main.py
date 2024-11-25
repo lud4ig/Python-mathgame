@@ -97,10 +97,10 @@ def play_game(maps):
 
 def main():
     maps = load_maps("assets/premade_maps.json")
-    # play_game(maps)
+    play_game(maps)
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
 
 
 with open("assets/math_problems.json", 'r') as f:
@@ -109,8 +109,8 @@ with open("assets/math_problems.json", 'r') as f:
 with open("assets/skills.json", 'r') as f:
     skills = json.load(f)
 
-with open("assets/mobs.json") as f:
-    mobs = json.load(f)
+# with open("assets/mobs.json") as f:
+#     mobs = json.load(f)
 # print(questions["easy"]['1'])
 # print(skills["Power"]['4'])
-print(mobs)
+# print(mobs)
