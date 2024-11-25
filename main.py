@@ -1,5 +1,5 @@
 import json
-import curses
+# import curses
 from generate_maze import maze, generate_maze, ensure_connected, place_start_and_end, place_s_and_h, place_perimeter
 from navigation import display_map, find_player_start, is_walkable
 
