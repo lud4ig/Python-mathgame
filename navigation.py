@@ -1,18 +1,16 @@
 import curses
 
-def display_map(stdscr, game_map, player_pos, visibility=1):
+def display_map(game_map, player_pos, visibility=1):
     """
     Display a portion of the game map centered around the player, with fog of war.
     
     Parameters:
-        stdscr: curses window object
         game_map (list of lists): The chosen maze for the game
         player_pos (tuple): Current position of the player (x, y).
         visibility (int): The radius of visibility around the player. Defaults to 1.
         
     This function does not return any values.
     """
-    stdscr.clear()
     px, py = player_pos
     x, y = len(game_map), len(game_map[0])
 
@@ -23,19 +21,17 @@ def display_map(stdscr, game_map, player_pos, visibility=1):
     end_y = min(y, py + visibility + 1)
 
     # Render only the visible portion of the map, aka fog of war
+    output = []
     for x_idx in range(start_x, end_x):
+        row = ""
         for y_idx in range(start_y, end_y):
             if abs(x_idx - px) <= visibility and abs(y_idx - py) <= visibility:
                 char = "@" if (x_idx, y_idx) == player_pos else game_map[x_idx][y_idx]
             else:
                 char = "#"
-
-            # Draw the player relative to the viewport
-            viewport_x = x_idx - start_x
-            viewport_y = y_idx - start_y
-            stdscr.addstr(viewport_x, viewport_y * 2, char)
-
-    stdscr.refresh()
+            row += char + " "
+        output.append(row)
+    print("\n".join(output))
 
 def find_player_start(game_map):
     """
