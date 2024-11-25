@@ -1,20 +1,9 @@
 import json
 from generate_maze import maze, generate_maze, ensure_connected, place_start_and_end, place_s_and_h, place_perimeter
-from navigation import display_map, find_player_start, is_walkable
+from navigation import display_map, find_player_start, is_walkable, check_random_encounter
+from utils import clear_screen, delay_message
 import random
-import os
 
-def clear_screen():
-    """
-    Clears the terminal screen.
-    """
-    os.system('cls' if os.name == 'nt' else 'clear')
-    
-def delay_message():
-    """
-    Pause the game to allow players to read a message.
-    """
-    input("\nPress Enter to continue...")
 
 def load_maps(filename):
     """
@@ -28,23 +17,6 @@ def load_maps(filename):
     """
     with open(filename, 'r') as file:
         return json.load(file)
-
-def check_random_encounter(step_count):
-    """
-    Check if a random encounter occurs based on the number of steps taken.
-    
-    Parameters:
-        step_count (int): Number of steps taken since the last encounter.
-        
-    Returns:
-        bool: True if an encounter occurs, False otherwise.
-    """
-    encounter_chance = min(50, step_count * 5)
-    if random.randint(1, 100) <= encounter_chance:
-        print("You encounter a monster!") # EDIT THIS TO TRIGGER ENCOUNTER LOGIC
-        delay_message()
-        return True
-    return False
 
 def play_game(maps):
     """

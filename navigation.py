@@ -1,3 +1,6 @@
+import random
+from utils import clear_screen, delay_message
+
 def display_map(game_map, player_pos, visibility=1):
     """
     Display a portion of the game map centered around the player, with fog of war.
@@ -5,14 +8,25 @@ def display_map(game_map, player_pos, visibility=1):
     Parameters:
         game_map (list of lists): The chosen maze for the game
         player_pos (tuple): Current position of the player (x, y).
-        visibility (int): The radius of visibility around the player. Defaults to 1.
+        visibility (int, default=1): Visibility around the player.
         
     This function does not return any values.
     """
+
+    # I ChatGPT'd these colors cause I don't know the ANSI color codes by heart
+    colors = {
+        "T": "\033[90m",  # Greyish
+        "P": "\033[97m",  # White
+        "S": "\033[96m",  # Cyan ish?
+        "H": "\033[92m",  # Green
+        "B": "\033[91m",  # Red
+        "@": "\033[93m",  # Yellow
+    }
+    reset_color = "\033[0m"
+
     px, py = player_pos
     x, y = len(game_map), len(game_map[0])
 
-    # Compute visible window bounds
     start_x = max(0, px - visibility)
     end_x = min(x, px + visibility + 1)
     start_y = max(0, py - visibility)
@@ -25,9 +39,8 @@ def display_map(game_map, player_pos, visibility=1):
         for y_idx in range(start_y, end_y):
             if abs(x_idx - px) <= visibility and abs(y_idx - py) <= visibility:
                 char = "@" if (x_idx, y_idx) == player_pos else game_map[x_idx][y_idx]
-            else:
-                char = "#"
-            row += char + " "
+                colored_char = f"{colors.get(char, reset_color)}{char}{reset_color}"
+            row += colored_char + " "
         output.append(row)
     print("\n".join(output))
 
@@ -60,4 +73,21 @@ def is_walkable(game_map, pos):
     x, y = pos
     if 0 <= x < len(game_map) and 0 <= y < len(game_map[0]):
         return game_map[x][y] in {"P", "S", "H", "B"}  # "P" = path, "S" = start, "H" = hidden, "B" = boss
+    return False
+    
+def check_random_encounter(step_count):
+    """
+    Check if a random encounter occurs based on the number of steps taken.
+    
+    Parameters:
+        step_count (int): Number of steps taken since the last encounter.
+        
+    Returns:
+        bool: True if an encounter occurs, False otherwise.
+    """
+    encounter_chance = min(50, step_count * 5)
+    if random.randint(1, 100) <= encounter_chance:
+        print("\033[33mYou encounter a monster!\033[0m") # EDIT THIS TO TRIGGER ENCOUNTER LOGIC
+        delay_message()
+        return True
     return False
