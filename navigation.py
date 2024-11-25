@@ -1,5 +1,3 @@
-import curses
-
 def display_map(game_map, player_pos, visibility=1):
     """
     Display a portion of the game map centered around the player, with fog of war.
