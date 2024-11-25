@@ -1,0 +1,22 @@
+skills = {
+    "Power": {
+        1: ("Mighty Strike", 1),
+        2: ("Titan Smash", 3),
+        3: ("Colossal Breaker", 5)
+    },
+    "Water": {
+        1: ("Aqua Splash", 3),
+        2: ("Tidal Wave", 5),
+        3: ("Ocean Fury", 7)
+    },
+    "Fire": {
+        1: ("Flame Burst", 5),
+        2: ("Inferno Burst", 7),
+        3: ("Hellfire Eruption", 9)
+    },
+    "Air": {
+        1: ("Gale Slash", 7),
+        2: ("Cyclone Strike", 9),
+        3: ("Tempest Fury", 15)
+    }
+}
