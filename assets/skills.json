@@ -1,22 +1,26 @@
 skills = {
     "Power": {
-        1: ("Mighty Strike", 1),
-        2: ("Titan Smash", 3),
-        3: ("Colossal Breaker", 5)
+        1: ("Mighty Strike", 10),
+        2: ("Titan Smash", 30),
+        3: ("Colossal Breaker", 50)
+        4: ("Earthshatter Impact", 100)
     },
     "Water": {
-        1: ("Aqua Splash", 3),
-        2: ("Tidal Wave", 5),
-        3: ("Ocean Fury", 7)
+        1: ("Aqua Splash", 10),
+        2: ("Tidal Wave", 30),
+        3: ("Ocean Fury", 50)
+        4: ("Maelstrom Surge",100)
     },
     "Fire": {
-        1: ("Flame Burst", 5),
-        2: ("Inferno Burst", 7),
-        3: ("Hellfire Eruption", 9)
+        1: ("Flame Burst", 10),
+        2: ("Inferno Burst", 30),
+        3: ("Hellfire Eruption", 50)
+        1: ("Blazing Cataclysm",100)
     },
     "Air": {
-        1: ("Gale Slash", 7),
-        2: ("Cyclone Strike", 9),
-        3: ("Tempest Fury", 15)
+        1: ("Gale Slash", 10),
+        2: ("Cyclone Strike", 30),
+        3: ("Tempest Fury", 50)
+        4: ("Hurricane Wrath",100)
     }
 }
