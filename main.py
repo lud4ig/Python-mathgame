@@ -1,7 +1,20 @@
 import json
-import curses
 from generate_maze import maze, generate_maze, ensure_connected, place_start_and_end, place_s_and_h, place_perimeter
 from navigation import display_map, find_player_start, is_walkable
+import random
+import os
+
+def clear_screen():
+    """
+    Clears the terminal screen.
+    """
+    os.system('cls' if os.name == 'nt' else 'clear')
+    
+def delay_message():
+    """
+    Pause the game to allow players to read a message.
+    """
+    input("\nPress Enter to continue...")
 
 def load_maps(filename):
     """
@@ -15,6 +28,23 @@ def load_maps(filename):
     """
     with open(filename, 'r') as file:
         return json.load(file)
+
+def check_random_encounter(step_count):
+    """
+    Check if a random encounter occurs based on the number of steps taken.
+    
+    Parameters:
+        step_count (int): Number of steps taken since the last encounter.
+        
+    Returns:
+        bool: True if an encounter occurs, False otherwise.
+    """
+    encounter_chance = min(50, step_count * 5)
+    if random.randint(1, 100) <= encounter_chance:
+        print("You encounter a monster!") # EDIT THIS TO TRIGGER ENCOUNTER LOGIC
+        delay_message()
+        return True
+    return False
 
 def play_game(maps):
     """
@@ -30,6 +60,7 @@ def play_game(maps):
 
     if difficulty not in maps and difficulty != "random":
         print("Invalid choice! Exiting the game.")
+        delay_message()
         return
 
     if difficulty == "random":
@@ -44,9 +75,11 @@ def play_game(maps):
 
     player_pos = find_player_start(game_map)
     first_move = True
+    step_count = 0
 
     # Main loop for the game
     while True:
+        clear_screen()
         display_map(game_map, player_pos)
         print("(WASD) Move | (P)layer Information | (Q)uit")
         key = input("Your move: ").lower()
@@ -63,9 +96,11 @@ def play_game(maps):
             new_pos = (x, y + 1)
         elif key == 'q':  # Quit
             print("Goodbye! Exiting the game.")
+            delay_message()
             return
         else:
             print("Invalid input! Use WASD to move or Q to quit.")
+            delay_message()
             continue
 
         if is_walkable(game_map, new_pos):
@@ -75,10 +110,16 @@ def play_game(maps):
 
             player_pos = new_pos
 
+            if game_map[player_pos[0]][player_pos[1]] == "P":
+                step_count += 1
+                if check_random_encounter(step_count):
+                    step_count = 0
+
             # Trigger boss event when player touches the B tile
             if game_map[player_pos[0]][player_pos[1]] == "B":
                 display_map(game_map, player_pos)
                 print("Begin boss encounter.")
+                delay_message()
                 print("Congratulations! You beat the stage!")
                 break
 
