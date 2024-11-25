@@ -112,7 +112,7 @@ def play_game(maps):
 
             if game_map[player_pos[0]][player_pos[1]] == "P":
                 step_count += 1
-                if check_random_encounter(step_count):
+                if check_random_encounter(step_count): 
                     step_count = 0
 
             # Trigger boss event when player touches the B tile
@@ -125,7 +125,20 @@ def play_game(maps):
 
 def main():
     maps = load_maps("assets/premade_maps.json")
-    play_game(maps)
+    # play_game(maps)
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
+
+
+with open("assets/math_problems.json", 'r') as f:
+    questions = json.load(f)
+
+with open("assets/skills.json", 'r') as f:
+    skills = json.load(f)
+
+with open("assets/mobs.json") as f:
+    mobs = json.load(f)
+# print(questions["easy"]['1'])
+# print(skills["Power"]['4'])
+print(mobs)
