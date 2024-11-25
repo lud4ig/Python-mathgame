@@ -16,28 +16,20 @@ def load_maps(filename):
     with open(filename, 'r') as file:
         return json.load(file)
 
-def play_game(stdscr, maps):
+def play_game(maps):
     """
     Main logic for the game
     
     Parameters:
-        stdscr: curses window object
         maps (json): list of premade maps
         
     This function does not return any values.
     """
-    stdscr.clear()
-    stdscr.addstr(0, 0, "Select a map: " + ", ".join(maps.keys()) + ", or 'random' for a randomly generated map.")
-    stdscr.refresh()
-    
-    stdscr.addstr(1, 0, "Enter your choice: ")
-    curses.echo()
-    difficulty = stdscr.getstr(1, len("Enter your choice: ")).decode().lower()
-    curses.noecho()
+    print("Select a map: " + ", ".join(maps.keys()) + ", or 'random' for a randomly generated map.")
+    difficulty = input("Enter your choice: ").strip().lower()
 
     if difficulty not in maps and difficulty != "random":
-        stdscr.addstr(3, 0, "Invalid choice! Press any key to exit.")
-        stdscr.getch()
+        print("Invalid choice! Exiting the game.")
         return
 
     if difficulty == "random":
@@ -52,29 +44,28 @@ def play_game(stdscr, maps):
 
     player_pos = find_player_start(game_map)
     first_move = True
-    
+
     # Main loop for the game
     while True:
-        display_map(stdscr, game_map, player_pos)
+        display_map(game_map, player_pos)
+        print("(WASD) Move | (P)layer Information | (Q)uit")
+        key = input("Your move: ").lower()
 
-        stdscr.addstr(len(game_map) + 1, 0, "(WASD) Move | (P)layer Information | (Q)uit")
-        key = stdscr.getch()
-
-        # Player options, add or remove as needed
+        # Player options
         x, y = player_pos
-        if key == ord('w'):  # Up
+        if key == 'w':  # Up
             new_pos = (x - 1, y)
-        elif key == ord('a'):  # Left
+        elif key == 'a':  # Left
             new_pos = (x, y - 1)
-        elif key == ord('s'):  # Down
+        elif key == 's':  # Down
             new_pos = (x + 1, y)
-        elif key == ord('d'):  # Right
+        elif key == 'd':  # Right
             new_pos = (x, y + 1)
-        elif key == ord('q'):  # Quit
-            stdscr.addstr(len(game_map) + 2, 0, "Goodbye! Press any key to exit.")
-            stdscr.getch()
+        elif key == 'q':  # Quit
+            print("Goodbye! Exiting the game.")
             return
         else:
+            print("Invalid input! Use WASD to move or Q to quit.")
             continue
 
         if is_walkable(game_map, new_pos):
@@ -86,15 +77,14 @@ def play_game(stdscr, maps):
 
             # Trigger boss event when player touches the B tile
             if game_map[player_pos[0]][player_pos[1]] == "B":
-                display_map(stdscr, game_map, player_pos)
-                stdscr.addstr(len(game_map) + 2, 0, "Begin boss encounter.")
-                stdscr.addstr(len(game_map) + 3, 0, "Congratulations! You beat the stage!")
-                stdscr.getch()
+                display_map(game_map, player_pos)
+                print("Begin boss encounter.")
+                print("Congratulations! You beat the stage!")
                 break
 
-def main(stdscr):
+def main():
     maps = load_maps("assets/premade_maps.json")
-    play_game(stdscr, maps)
+    play_game(maps)
 
 if __name__ == "__main__":
-    curses.wrapper(main)
+    main()
