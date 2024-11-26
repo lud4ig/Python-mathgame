@@ -4,6 +4,48 @@ from navigation import display_map, find_player_start, is_walkable, check_random
 from utils import clear_screen, delay_message
 import random
 
+with open("assets/math_problems.json", 'r') as f:
+    questions = json.load(f)
+
+with open("assets/skills.json", 'r') as f:
+    skills = json.load(f)
+
+# with open("assets/mobs.json") as f:
+#     mobs = json.load(f)
+# print(questions["easy"]['1'])
+# print(skills["Power"]['4'])
+# print(mobs)
+
+def show_rules():
+    """
+    Prints out the rules of the game to the player.
+    """
+    clear_screen()
+    print("=== GAME RULES ===")
+    print("""
+    1. Navigate the maze by entering WASD.
+    2. Dangerous challenges await:
+        - 'P' tiles are walkable paths.
+        - 'T' tiles are thickets that cannot be traversed.
+        - 'H' tiles are healing zones to recover.
+        - 'B' tiles are boss fights.
+        - 'S' tiles contain wise sages who will guide you to success.
+    3. Your objective is to reach the boss and defeat it with your newfound mathematical prowess!.
+    """)
+    delay_message()
+
+def title_screen():
+    clear_screen()
+    print("======================================")
+    print("       WELCOME, BRAVE WARRIOR!")
+    print("======================================")
+    print("""
+    1. New Game
+    2. Rules
+    Q. Quit
+    """)
+    menu_choice = input("Enter your choice: ").strip().lower()
+    return menu_choice
 
 def load_maps(filename):
     """
@@ -18,7 +60,7 @@ def load_maps(filename):
     with open(filename, 'r') as file:
         return json.load(file)
 
-def play_game(maps):
+def play_game(maps, ADD_OTHER_FILES=True):
     """
     Main logic for the game
     
@@ -31,7 +73,7 @@ def play_game(maps):
     difficulty = input("Enter your choice: ").strip().lower()
 
     if difficulty not in maps and difficulty != "random":
-        print("Invalid choice! Exiting the game.")
+        print("Invalid choice! Returning to main menu.")
         delay_message()
         return
 
@@ -86,31 +128,43 @@ def play_game(maps):
                 step_count += 1
                 if check_random_encounter(step_count): 
                     step_count = 0
+                    
+            if game_map[player_pos[0]][player_pos[1]] == "S":
+                #PLACEHOLDER, REWRITE IT WITH THE APPROPRIATE SAGE FUNCTION
+                print("Welcome, brave warrior. I am a sage of mathematics. Heed my wisdom!")
+                delay_message()
+                
+            if game_map[player_pos[0]][player_pos[1]] == "H":
+                #PLACEHOLDER, REWRITE IT WITH APPROPRIATE HEALING FUNCTION
+                print("Amidst the thickets you happen upon a healing glade.")
+                delay_message()
 
             # Trigger boss event when player touches the B tile
             if game_map[player_pos[0]][player_pos[1]] == "B":
-                display_map(game_map, player_pos)
+                #PLACEHOLDER, REWRITE IT WITH THE APPROPRIATE BOSS FUNCTION
                 print("Begin boss encounter.")
                 delay_message()
-                print("Congratulations! You beat the stage!")
+                clear_screen()
+                print("Congratulations! You beat the stage! Returning to main menu.")
+                delay_message()
                 break
 
 def main():
-    maps = load_maps("assets/premade_maps.json")
-    play_game(maps)
+    while True:
+        menu_choice = title_screen()
+        clear_screen()
+        if menu_choice == "1":
+            maps = load_maps("assets/premade_maps.json")
+            play_game(maps)
+        elif menu_choice == "2":
+            show_rules()
+        elif menu_choice == "Q".lower():
+            print("Thanks for playing! Goodbye!")
+            delay_message()
+            break
+        else:
+            print("Invalid choice! Please try again.")
+            delay_message()
 
 if __name__ == "__main__":
     main()
-
-
-with open("assets/math_problems.json", 'r') as f:
-    questions = json.load(f)
-
-with open("assets/skills.json", 'r') as f:
-    skills = json.load(f)
-
-# with open("assets/mobs.json") as f:
-#     mobs = json.load(f)
-# print(questions["easy"]['1'])
-# print(skills["Power"]['4'])
-# print(mobs)
