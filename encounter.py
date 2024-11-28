@@ -43,7 +43,13 @@ def mob_encounter(player_health, player_skills):
         # print the list of skills that the player can use against the mob, from 1 to 4 (that is, if the player has it)
         print("You have", player_health, "health.")
         print(f"You have {list(player_skills.items())[0]}")
-        chosen_skill = input("What skill would you like to use? Choose the number. ")
+        chosen_skill = None
+        while not chosen_skill or chosen_skill not in player_skills:
+            chosen_skill = input("What skill would you like to use? Choose the number. ")
+            if not chosen_skill:
+                print("Invalid input. Please try again!")
+            elif chosen_skill not in player_skills:
+                print("You do not have this skill. Please try again!")
         skill_tuple = list(player_skills[chosen_skill].items())[0]
         power_name, damage = skill_tuple
         # validate input
