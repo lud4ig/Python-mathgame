@@ -66,9 +66,15 @@ def mob_encounter(player_health, player_skills):
             question_number = random.choice(list(questions["easy"].keys()))
             question = list(questions["easy"][question_number].keys())[0]
             print(question)
-            player_answer = int(input("Enter Your Answer: "))
+            player_answer = None
+            while not player_answer or not player_answer.isnumeric():
+                player_answer = input("Enter Your Answer: ")
+                if not player_answer:
+                    print("Invalid input. Please try again!")
+                else:
+                    print("Enter a number! Please try again!")
             correct_answer = questions["easy"][question_number][question]
-            if player_answer == correct_answer:
+            if int(player_answer) == correct_answer:
                 mob_health -= damage
                 print(f"Congrats! You have dealt {damage} damage to the mob. The mob now has {mob_health} health.")
             else:
