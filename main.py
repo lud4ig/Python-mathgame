@@ -2,6 +2,7 @@ import json
 from generate_maze import maze, generate_maze, ensure_connected, place_start_and_end, place_s_and_h, place_perimeter
 from navigation import display_map, find_player_start, is_walkable, check_random_encounter
 from utils import clear_screen, delay_message
+from encounter import mob_encounter
 import random
 
 with open("assets/math_problems.json", 'r') as f:
@@ -10,11 +11,8 @@ with open("assets/math_problems.json", 'r') as f:
 with open("assets/skills.json", 'r') as f:
     skills = json.load(f)
 
-# with open("assets/mobs.json") as f:
-#     mobs = json.load(f)
-# print(questions["easy"]['1'])
-# print(skills["Power"]['4'])
-# print(mobs)
+# print(skills)
+
 
 def show_rules():
     """
@@ -69,6 +67,7 @@ def play_game(maps, ADD_OTHER_FILES=True):
         
     This function does not return any values.
     """
+    player_health = 100
     print("Select a map: " + ", ".join(maps.keys()) + ", or 'random' for a randomly generated map.")
     difficulty = input("Enter your choice: ").strip().lower()
 
@@ -87,9 +86,19 @@ def play_game(maps, ADD_OTHER_FILES=True):
     else:
         game_map = maps[difficulty]
 
-    player_pos = find_player_start(game_map)
-    first_move = True
-    step_count = 0
+    print("Select a class: " + ", ".join(skills.keys()))
+    player_class = input("Enter your class choice: ").strip().lower()
+
+    if player_class not in skills:
+        print("Invalid choice! Returning to main menu.")
+        delay_message()
+        return
+    else:
+        player_skills = {} # player skills will be a dictionary of dictionaries
+        player_skills['1'] = skills[player_class]['1'] # dictionary with only the 1st skill from the class when player starts the game {'1': {'Mighty Strike': 10}}
+        player_pos = find_player_start(game_map)
+        first_move = True
+        step_count = 0
 
     # Main loop for the game
     while True:
@@ -126,8 +135,17 @@ def play_game(maps, ADD_OTHER_FILES=True):
 
             if game_map[player_pos[0]][player_pos[1]] == "P":
                 step_count += 1
-                if check_random_encounter(step_count): 
-                    step_count = 0
+                if check_random_encounter(step_count):
+                    return_object = mob_encounter(player_health, player_skills)
+                    alive = return_object[0]
+                    player_health = return_object[1]
+                    player_skills = return_object[2]
+                    if alive:
+                        step_count = 0
+                    else:
+                        print("You died! Try again next time!")
+                        delay_message()
+                        break
                     
             if game_map[player_pos[0]][player_pos[1]] == "S":
                 #PLACEHOLDER, REWRITE IT WITH THE APPROPRIATE SAGE FUNCTION
