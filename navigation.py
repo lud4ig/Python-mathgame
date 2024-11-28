@@ -87,7 +87,5 @@ def check_random_encounter(step_count):
     """
     encounter_chance = min(50, step_count * 5)
     if random.randint(1, 100) <= encounter_chance:
-        print("\033[33mYou encounter a monster!\033[0m") # EDIT THIS TO TRIGGER ENCOUNTER LOGIC
-        delay_message()
         return True
     return False
