@@ -71,7 +71,7 @@ def mob_encounter(player_health, player_skills):
                 player_answer = input("Enter Your Answer: ")
                 if not player_answer:
                     print("Invalid input. Please try again!")
-                else:
+                elif not player_answer.isnumeric():
                     print("Enter a number! Please try again!")
             correct_answer = questions["easy"][question_number][question]
             if int(player_answer) == correct_answer:
