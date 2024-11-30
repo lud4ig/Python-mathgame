@@ -2,7 +2,7 @@ import json
 from generate_maze import maze, generate_maze, ensure_connected, place_start_and_end, place_s_and_h, place_perimeter
 from navigation import display_map, find_player_start, is_walkable, check_random_encounter
 from utils import clear_screen, delay_message
-from encounter import mob_encounter
+from encounter import mob_encounter, boss_encounter
 import random
 
 with open("assets/math_problems.json", 'r') as f:
@@ -10,9 +10,6 @@ with open("assets/math_problems.json", 'r') as f:
 
 with open("assets/skills.json", 'r') as f:
     skills = json.load(f)
-
-# print(skills)
-
 
 def show_rules():
     """
@@ -28,7 +25,8 @@ def show_rules():
         - 'H' tiles are healing zones to recover.
         - 'B' tiles are boss fights.
         - 'S' tiles contain wise sages who will guide you to success.
-    3. Your objective is to reach the boss and defeat it with your newfound mathematical prowess!.
+    3. Your objective is to reach the boss and defeat it with your newfound mathematical prowess! You can look for the boss directly,
+          but let this be a gentle reminder: the questions given to you by the boss are going to be hard.
     """)
     delay_message()
 
@@ -87,12 +85,13 @@ def play_game(maps, ADD_OTHER_FILES=True):
         game_map = maps[difficulty]
 
     print("Select a class: " + ", ".join(skills.keys()))
-    player_class = input("Enter your class choice: ").strip().lower()
+    player_class = None
 
-    if player_class not in skills:
-        print("Invalid choice! Returning to main menu.")
-        delay_message()
-        return
+    while player_class not in skills or player_class is None:
+        player_class = input("Enter your class choice: ").strip().lower()
+        if player_class not in skills:
+            print("Invalid choice! Please try again!")
+
     else:
         player_skills = {} # player skills will be a dictionary of dictionaries
         player_skills['1'] = skills[player_class]['1'] # dictionary with only the 1st skill from the class when player starts the game {'1': {'Mighty Strike': 10}}
@@ -136,7 +135,7 @@ def play_game(maps, ADD_OTHER_FILES=True):
             if game_map[player_pos[0]][player_pos[1]] == "P":
                 step_count += 1
                 if check_random_encounter(step_count):
-                    return_object = mob_encounter(player_health, player_skills)
+                    return_object = mob_encounter(player_health, player_skills, player_class)
                     alive = return_object[0]
                     player_health = return_object[1]
                     player_skills = return_object[2]
@@ -160,12 +159,17 @@ def play_game(maps, ADD_OTHER_FILES=True):
             # Trigger boss event when player touches the B tile
             if game_map[player_pos[0]][player_pos[1]] == "B":
                 #PLACEHOLDER, REWRITE IT WITH THE APPROPRIATE BOSS FUNCTION
-                print("Begin boss encounter.")
-                delay_message()
-                clear_screen()
-                print("Congratulations! You beat the stage! Returning to main menu.")
-                delay_message()
-                break
+                alive = boss_encounter(player_health, player_skills, player_class)
+                if alive:
+                    clear_screen()
+                    print("Congrats! You have beaten the boss! You are now ready to tackle the upcoming challenges in the world of mathematics.")
+                    delay_message()
+                    break
+                else:
+                    clear_screen()
+                    print("Sorry.. you were not able to defeat the final boss. Try harder, and eventually you can do it!")
+                    delay_message()
+                    break
 
 def main():
     while True:
