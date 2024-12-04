@@ -74,28 +74,35 @@ def mob_encounter(player_health, player_skills, player_class):
         if player_skills[chosen_skill][power_name] == 10:
             question_number = random.choice(list(questions["easy"].keys()))
             question = list(questions["easy"][question_number].keys())[0]
-            print(question)
-            player_answer = None
-            while not player_answer or not player_answer.isnumeric():
-                player_answer = input("Enter Your Answer: ")
-                if not player_answer:
-                    print("Invalid input. Please try again!")
-                elif not player_answer.isnumeric():
-                    print("Enter a number! Please try again!")
             correct_answer = questions["easy"][question_number][question]
-            if int(player_answer) == correct_answer:
-                mob_health -= damage
-                print(f"Congrats! You have dealt {damage} damage to the mob. The mob now has {mob_health} health.")
-            else:
-                player_health -= damage*5
-                print(f"That answer was incorrect. The correct answer was {correct_answer}.")
+
         elif player_skills[chosen_skill] == 30:
             question_number = random.choice(list(questions["medium"].keys()))
+            question = list(questions["medium"][question_number].keys())[0]
+            correct_answer = questions["medium"][question_number][question]
             
         elif player_skills[chosen_skill] == 50:
             question_number = random.choice(list(questions["hard"].keys()))
+            question = list(questions["hard"][question_number].keys())[0]
+            correct_answer = questions["hard"][question_number][question]
         else:
-            question_number= random.choice(list(questions["very hard"].keys()))
+            question_number= random.choice(list(questions["very_hard"].keys()))
+            question = list(questions["very_hard"][question_number].keys())[0]
+            correct_answer = questions["very_hard"][question_number][question]
+        print(question)
+        player_answer = None
+        while not player_answer or not player_answer.isnumeric():
+            player_answer = input("Enter Your Answer: ")
+            if not player_answer:
+                print("Invalid input. Please try again!")
+            elif not player_answer.isnumeric():
+                print("Enter a number! Please try again!")
+        if int(player_answer) == correct_answer:
+            mob_health -= damage
+            print(f"Congrats! You have dealt {damage} damage to the mob. The mob now has {mob_health} health.")
+        else:
+            player_health -= damage*5
+            print(f"That answer was incorrect. The correct answer was {correct_answer}.")
 
     if player_health <= 0:
         return [False, player_health, player_skills]
