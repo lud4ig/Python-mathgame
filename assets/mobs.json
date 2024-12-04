@@ -36,22 +36,11 @@
     "Difficulty": "Low"
 },
 
-
-
-"Dragon" : {
-    "Mob": "The Division Dragon",
-    "Health": 300,
-    "Difficulty": "High"
-  },
-
-
-
 "Vampire" : {
     "Mob": "The Vector Vampire",
     "Health": 200,
     "Difficulty": "High"
  },
-
 
 
 "Centuar" :  {
