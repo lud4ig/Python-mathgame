@@ -156,18 +156,13 @@ def play_game(maps, ADD_OTHER_FILES=True):
                 delay_message()
                 
             if game_map[player_pos[0]][player_pos[1]] == "H":
-                def heal_player(player_health):
-                    max_health = 100
-                    player_health += 30 
-                    print ("You found a healing point! You recovered some health!")
-                    if player_health > max_health:
-                        player_health = max_health
-                    return player_health
-
-print (healing_point_ascii)
-print ("New Health:", heal_player(30))
-                print("Amidst the thickets you happen upon a healing glade.")
+                print ("You found a healing point! You recovered some health!")
                 delay_message()
+                max_health = 100
+                player_health += 30 
+                if player_health > max_health:
+                    player_health = max_health
+                
 
             # Trigger boss event when player touches the B tile
             if game_map[player_pos[0]][player_pos[1]] == "B":
