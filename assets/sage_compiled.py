@@ -3,8 +3,9 @@
 import random
 from sage_dialogue import mage_dialogue
 from sage_ascii_teach_quiz import sage, mage_teaching, quiz
+from utils import delay_message 
 
-#To in main code
+#To be in main code
 skill_lvl = 1   
 count = 0
 
@@ -16,9 +17,9 @@ def meet_mage (skill_lvl, count):
         print(mage_dialogue["first_encounter"]["welcome"])
     
     print(mage_dialogue[str(skill_lvl)]["welcome"])  # Display welcome message 
-    print(input("Once you are ready, press Enter to continue...")) # Requires user to press enter to continue
+    delay_message() # Requires user to press enter to continue
     print(mage_teaching[str(skill_lvl)]) # Display teaching content 
-    print(input("Once you are ready, press Enter to continue..."))
+    delay_message()
     print(mage_dialogue[str(skill_lvl)]["quiz_time"]) # Display quiz 
     questions = random.sample(list(quiz[str(skill_lvl)].keys()), 2)  # Choose 2 random question from approprate level 
     
