@@ -35,7 +35,7 @@ sage_dialogue = {
                        "Practice makes perfect! \n"),
             
             "correct" : ("Brilliant! I knew you had it in you—great work!\n"
-                         f"You have learned Skill 2: {list(skills[skill_type]["2"].keys())[0]} \n"
+                         f"You have learned Skill 2: {list(skills[skill_type]['2'].keys())[0]} \n"
                          "That’s all from me for now. Safe travels, brave one! \n"
                          "Something tells me you’re destined for greatness. I’ll be rooting for you!\n")
         },
@@ -56,7 +56,7 @@ sage_dialogue = {
                       "Fs this time, will you?\n"),
             
             "correct": ("Hmph. I’ll admit, that was better than I expected. \n"
-                        f"You have learned Skill 3: {list(skills[skill_type]["3"].keys())[0]} \n"
+                        f"You have learned Skill 3: {list(skills[skill_type]['3'].keys())[0]} \n"
                         "That’s all the help you’ll get from me. \n"
                         "Now go! The world won’t save itself, and I’ve no time for slackers.\n")
         },
@@ -77,7 +77,7 @@ sage_dialogue = {
             
             "correct" : ("Yes, that is correct. Your insight serves you well."
                          "Congratulations! \n" 
-                         f"You have learned the ultimate skill: {list(skills[skill_type]["4"].keys())[0]} \n" 
+                         f"You have learned the ultimate skill: {list(skills[skill_type]['4'].keys())[0]} \n" 
                          "Go forth, hero, and fulfil your destiny. \n" 
                          "The world’s hope rests with you, and you have proven yourself worthy of that burden. \n"
                          "Remember, even in darkness, the light of wisdom shall guide you. \n")
