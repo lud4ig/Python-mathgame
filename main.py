@@ -150,7 +150,7 @@ def play_game(maps, ADD_OTHER_FILES=True):
                         break
                     
             if game_map[player_pos[0]][player_pos[1]] == "S":
-                meet_sage(skill_lvl, count)
+                meet_sage(skill_lvl, count, player_class)
                 delay_message()
                 
             if game_map[player_pos[0]][player_pos[1]] == "H":

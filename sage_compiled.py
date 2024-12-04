@@ -3,12 +3,9 @@
 import random
 from sage_dialogue import sage_dialogue
 from sage_ascii_teach_quiz import sage, sage_teaching, quiz
-from utils import delay_message 
+from utils import delay_message
 
-#To be in main code
-
-
-def meet_sage(skill_lvl, count): 
+def meet_sage(skill_lvl, count, player_class):
     score = 0
     print(random.choice(sage[skill_lvl-1])) # Display 1 random sage for that level
     
