@@ -12,6 +12,7 @@ with open("assets/math_problems.json", 'r') as f:
 with open("assets/skills.json", 'r') as f:
     skills = json.load(f)
 
+print(skills['power']['2'])
 def show_rules():
     """
     Prints out the rules of the game to the player.
@@ -150,7 +151,8 @@ def play_game(maps, ADD_OTHER_FILES=True):
                         break
                     
             if game_map[player_pos[0]][player_pos[1]] == "S":
-                meet_sage(skill_lvl, count)
+                skill_lvl, encounters = meet_sage(skill_lvl, count)
+                player_skills[f'{skill_lvl}'] = skills[player_class][f'{skill_lvl}']
                 delay_message()
                 
             if game_map[player_pos[0]][player_pos[1]] == "H":
