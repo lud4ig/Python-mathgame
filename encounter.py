@@ -56,8 +56,9 @@ def mob_encounter(player_health, player_skills, player_class):
     mob = random.choice(possible_mobs)
     mob_name = mobs[mob]["Mob"]
     mob_health = mobs[mob]["Health"]
+    mob_art = mobs[mob]["Art"]
     clear_screen()
-    print("Mob Name:", mob_name, "\nMob Health:", mob_health) # print mob name and health
+    print("Mob Name:", mob_name, "\nMob Art:", mob_art, "\nMob Health:", mob_health) # print mob name and health
     while mob_health > 0 and player_health > 0:
         # print the list of skills that the player can use against the mob, from 1 to 4 (that is, if the player has it)
         print("You have", player_health, "health.")
