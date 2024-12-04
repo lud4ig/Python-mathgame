@@ -3,6 +3,7 @@ from generate_maze import maze, generate_maze, ensure_connected, place_start_and
 from navigation import display_map, find_player_start, is_walkable, check_random_encounter
 from utils import clear_screen, delay_message
 from encounter import mob_encounter, boss_encounter
+from sage_compiled import meet_sage
 import random
 
 with open("assets/math_problems.json", 'r') as f:
@@ -66,6 +67,8 @@ def play_game(maps, ADD_OTHER_FILES=True):
     This function does not return any values.
     """
     player_health = 100
+    skill_lvl = 1   
+    count = 0
     print("Select a map: " + ", ".join(maps.keys()) + ", or 'random' for a randomly generated map.")
     difficulty = input("Enter your choice: ").strip().lower()
 
@@ -147,8 +150,7 @@ def play_game(maps, ADD_OTHER_FILES=True):
                         break
                     
             if game_map[player_pos[0]][player_pos[1]] == "S":
-                #PLACEHOLDER, REWRITE IT WITH THE APPROPRIATE SAGE FUNCTION
-                print("Welcome, brave warrior. I am a sage of mathematics. Heed my wisdom!")
+                meet_sage(skill_lvl, count)
                 delay_message()
                 
             if game_map[player_pos[0]][player_pos[1]] == "H":
