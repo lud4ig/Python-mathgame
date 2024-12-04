@@ -12,7 +12,6 @@ with open("assets/math_problems.json", 'r') as f:
 with open("assets/skills.json", 'r') as f:
     skills = json.load(f)
 
-print(skills['power']['2'])
 def show_rules():
     """
     Prints out the rules of the game to the player.
