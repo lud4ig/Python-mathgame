@@ -109,8 +109,41 @@ def boss_encounter(player_health, player_skills, player_class):
     delay_message()
     boss_name = "The Division Dragon"
     boss_health = 300
+    Dragon_art = """
+                                  \\  `                                       
+     /)         ,   '--.           \\    `                                    
+    //     , '          \\/          \\   `   `                                
+   //    ,'              ./         /\\    \\>- `   ,----------.               
+  ( \\  ,'    .-.-._        /      ,' /\\    \\   . `            `.             
+   \\ \\'     /.--. .)       ./   ,'  /  \\     .      `           `.           
+    \\     -{/    \\ .)        / /   / ,' \\       `     `-----.     \\          
+    <\\      )     ).:)       ./   /,' ,' \\        `.  /\\)    `.    \\         
+     >^,  //     /..:)       /   //--'    \\         `(         )    )        
+      | ,'/     /. .:)      /   (/         \\          \\       /    /         
+      ( |(_    (...::)     (                \\       .-.\\     /   ,'          
+      (O| /     \\:.::)                      /\\    ,'   \\)   /  ,'            
+       \\|/      /`.:::)                   ,/  \\  /         (  /              
+               /  /`,.:)                ,'/    )/           \\ \\              
+             ,' ,'.'  `:>-._._________,<;'    (/            (,'              
+           ,'  /  |     `^-^--^--^-^-^-'                                      
+ .--------'   /   |                                                          
+(       .----'    |                                                          
+ \\ <`.  \\         |                                                          
+  \\ \\ `. \\        |                                            
+   \\ \\  `.`.      |                                                          
+    \\ \\   `.`.    |                                                          
+     \\ \\    `.`.  |                                                          
+      \\ \\     `.`.|                                                          
+       \\ \\      `.`.                                                         
+        \\ \\     ,^-'
+         \\ \\    |
+          `.`.  |
+             .`.|
+              `._>
+"""
     clear_screen()
     print(f"Boss name: {boss_name} | Boss health: {boss_health}")
+    print(Dragon_art)
     while boss_health > 0 and player_health > 0:
         print("You have", player_health, "health.")
         chosen_skill = skill_screen(player_skills, player_class)
