@@ -156,6 +156,30 @@ def play_game(maps, ADD_OTHER_FILES=True):
                 delay_message()
                 
             if game_map[player_pos[0]][player_pos[1]] == "H":
+                Heal_art = """
+                        _|_
+                         | 
+                         |
+                        / \
+                       //_\\
+                      //(_)\\
+                       |/^\|
+                       ||_||
+                       // \\
+                      //   \\
+                     // === \\
+                    // =-=-= \\
+                   //   ===   \\
+                  //|         |\\
+                    |         |
+                    |  __ __  |
+                    | |  |  | |
+                    | | -|- | |
+                    |_|__|__|_|
+                  /`  =======  `\\
+                /`    =======    `\\
+                """
+                print(Heal_art)
                 print ("You found a healing point! You recovered some health!")
                 delay_message()
                 max_health = 100
