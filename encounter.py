@@ -107,11 +107,10 @@ def mob_encounter(player_health, player_skills, player_class):
 def boss_encounter(player_health, player_skills, player_class):
     print("\033[31mYou encounter the final boss!\033[0m") 
     delay_message()
-    boss = mobs["Dragon"]
-    boss_name = boss["Mob"]
-    boss_health = boss["Health"]
+    boss_name = "The Division Dragon"
+    boss_health = 300
     clear_screen()
-    print(f"Boss name: {boss_name} Boss health: {boss_health}")
+    print(f"Boss name: {boss_name} | Boss health: {boss_health}")
     while boss_health > 0 and player_health > 0:
         print("You have", player_health, "health.")
         chosen_skill = skill_screen(player_skills, player_class)
