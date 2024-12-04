@@ -180,7 +180,7 @@ sage = [
     [Wise_sage1, Wise_sage2]
 ]
 
-mage_teaching = {
+sage_teaching = {
     
     "1": ("Let's start off from the basics \n"
           "Adding 3 numbers together \n"
@@ -249,8 +249,8 @@ mage_teaching = {
             "In a math equations, follow the BOBMAS rule. \n"
             "1st: (B) - Solve the bractets first \n"
             "2nd: (O) - Handle any power or square roots \n"
-            "3rd: (DM) - Handle division and multiplication from left to right (as per taught by the previous mage) \n"
-            "4th: (AS) - Handle addition and subtraction from left to right (as per taught by the previous mage \n"
+            "3rd: (DM) - Handle division and multiplication from left to right (as per taught by the previous sage) \n"
+            "4th: (AS) - Handle addition and subtraction from left to right (as per taught by the previous sage \n"
             "I have am examples here, read through if you need. \n\n"
             "Example: (8x5) - (35/5) x (7+3)\n"
             "Step 1: Solve the brackets. \n"

@@ -1,26 +1,25 @@
 # Teaching and Quiz 
 
 import random
-from sage_dialogue import mage_dialogue
-from sage_ascii_teach_quiz import sage, mage_teaching, quiz
+from sage_dialogue import sage_dialogue
+from sage_ascii_teach_quiz import sage, sage_teaching, quiz
 from utils import delay_message 
 
 #To be in main code
-skill_lvl = 1   
-count = 0
 
-def meet_mage (skill_lvl, count): 
+
+def meet_sage(skill_lvl, count): 
     score = 0
     print(random.choice(sage[skill_lvl-1])) # Display 1 random sage for that level
     
-    if count == 0:  # For first encounter or mage, explain what mage is 
-        print(mage_dialogue["first_encounter"]["welcome"])
+    if count == 0:  # For first encounter or sage, explain what sage is 
+        print(sage_dialogue["first_encounter"]["welcome"])
     
-    print(mage_dialogue[str(skill_lvl)]["welcome"])  # Display welcome message 
+    print(sage_dialogue[str(skill_lvl)]["welcome"])  # Display welcome message 
     delay_message() # Requires user to press enter to continue
-    print(mage_teaching[str(skill_lvl)]) # Display teaching content 
+    print(sage_teaching[str(skill_lvl)]) # Display teaching content 
     delay_message()
-    print(mage_dialogue[str(skill_lvl)]["quiz_time"]) # Display quiz 
+    print(sage_dialogue[str(skill_lvl)]["quiz_time"]) # Display quiz 
     questions = random.sample(list(quiz[str(skill_lvl)].keys()), 2)  # Choose 2 random question from approprate level 
     
     # For each question 
@@ -39,20 +38,14 @@ def meet_mage (skill_lvl, count):
                 score = score 
         
     if score >= 1: # If pass quiz
-        print(mage_dialogue[str(skill_lvl)]["correct"])
+        print(sage_dialogue[str(skill_lvl)]["correct"])
         skill_lvl = skill_lvl + 1 
  
     else: # If fail quiz
-        print(mage_dialogue[str(skill_lvl)]["wrong"])
+        print(sage_dialogue[str(skill_lvl)]["wrong"])
     
     count += 1 # To record if it is the first time encountering sage 
     return (skill_lvl, count)
-
-
-skill_lvl, count = meet_mage(skill_lvl, count)
-
-print("Updated skill level:", skill_lvl)
-print("update count:",count)
         
     
 

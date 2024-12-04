@@ -4,17 +4,19 @@ Created on Sat Nov 30 16:09:01 2024
 
 @author: Xin Yi
 """
+import json
 
-from skills import skills
+with open("assets/skills.json", 'r') as f:
+    skills = json.load(f)
 
 skill_type = "power"
 
-mage_dialogue = {
+sage_dialogue = {
     
     "first_encounter": 
         {
-            "welcome": ("You have encounted a mage! \n"
-                        "Mages are masters of their craft, ready to share their wisdom with those deemed worthy. \n"
+            "welcome": ("You have encounted a sage! \n"
+                        "sages are masters of their craft, ready to share their wisdom with those deemed worthy. \n"
                         "Learn from them to unlock new skills and enhance your abilities! \n")
         },
         
@@ -40,7 +42,7 @@ mage_dialogue = {
         
     "2": 
         {
-            "welcome": ("You have encounted a mage! \n"
+            "welcome": ("You have encounted a sage! \n"
                         "Hmph. Another feeble adventurer. \n"
                         "Your skills are weak—barely worth my time. \n" 
                         "But... I suppose I can teach you BOBMAS rule. \n" 
@@ -61,7 +63,7 @@ mage_dialogue = {
         
     "3":
         {
-            "welcome": ("You have encounted a mage! \n"
+            "welcome": ("You have encounted a sage! \n"
                         "Greetings, young one. \n"
                         "Your journey has been long, and the road ahead will test your very soul. \n"
                         "But first, it is time to learn the final lesson on how to analysis problem statement.\n"),
