@@ -1,52 +1,64 @@
-# Teaching and Quiz 
-
 import random
-from sage_dialogue import sage_dialogue
-from sage_ascii_teach_quiz import sage, sage_teaching, quiz
-from utils import delay_message 
+import json
+from utils import delay_message, clear_screen
 
-#To be in main code
+with open("sage_data.json", "r") as file:
+    sage_data = json.load(file)
 
-
-def meet_sage(skill_lvl, count): 
-    score = 0
-    print(random.choice(sage[skill_lvl-1])) # Display 1 random sage for that level
+def meet_sage(skill_lvl, count, player_class=""): 
+    print(sage_data["INDEX_FOR_SAGE_ASCII"])
     
-    if count == 0:  # For first encounter or sage, explain what sage is 
-        print(sage_dialogue["first_encounter"]["welcome"])
-    
-    print(sage_dialogue[str(skill_lvl)]["welcome"])  # Display welcome message 
-    delay_message() # Requires user to press enter to continue
-    print(sage_teaching[str(skill_lvl)]) # Display teaching content 
+    if count == 0:
+        print(sage_data["INDEX_FOR_FIRST_ENCOUNTER"]["INDEX_FOR_WELCOME"])
+        delay_message()
+        clear_screen()
+
+    print(sage_data["INDEX_FOR_SAGE_ASCII"])
+    print(sage_data["INDEX_FOR_SAGE_WELCOME"][str(skill_lvl)][0])
     delay_message()
-    print(sage_dialogue[str(skill_lvl)]["quiz_time"]) # Display quiz 
-    questions = random.sample(list(quiz[str(skill_lvl)].keys()), 2)  # Choose 2 random question from approprate level 
+    clear_screen()
     
-    # For each question 
+    print(sage_data["INDEX_FOR_SAGE_ASCII"])    
+    print(sage_data["INDEX_FOR_SAGE_TEACHINGS"][str(skill_lvl)])
+    delay_message()
+    clear_screen()
+    
+    print(sage_data["INDEX_FOR_SAGE_ASCII"]) 
+    questions = random.sample(list(saga_data["INDEX_FOR_SAGE_QUIZ"][str(skill_lvl)].keys()), 2)
+    
+    score = 0
     for i in questions: 
-        question, correct_answer = quiz[str(skill_lvl)][i]  # Get the question and answer 
-        print(question)  # Print the question 
-
-        user_answer = input("Your answer: ")  # Get user input 
-        if user_answer =="" or user_answer.isalpha() or not user_answer.isalnum(): # if input not numbers
-            score = score
-        else:  # If input is numbers 
-            user_answer = float(user_answer) 
-            if user_answer == correct_answer: 
-                score += 1 
-            else: 
-                score = score 
+        question_text = saga_data["INDEX_FOR_SAGE_QUIZ"][str(skill_lvl)][i]["INDEX_FOR_QUESTION"]
+        correct_answer = sage_data["INDEX_FOR_SAGE_QUIZ"][str(skill_lvl)][i]["INDEX_FOR_CORRECT_ANSWER"]
         
-    if score >= 1: # If pass quiz
-        print(sage_dialogue[str(skill_lvl)]["correct"])
-        skill_lvl = skill_lvl + 1 
+        print(question_text)
+        user_answer = input("Your answer: ")
+        if user_answer == "" or not user_answer.isdigit():
+                print("Invalid input! Moving to the next question.")
+                delay_message()
+                clear_screen()
+        else:
+            if int(user_answer) == correct_answer:
+                print("Correct!")
+                score += 1
+                delay_message()
+                clear_screen()
+            else:
+                print("Wrong answer.")
+                delay_message()
+                clear_screen()
+                
+    print(sage_data["INDEX_FOR_SAGE_ASCII"]) 
+        
+    if score >= 1:
+        skill_lvl += 1
+        print(f"{sage_data[INDEX_FOR_SAGE_CONGRATULATIONS][str(skill_lvl)]} Your skill level is now {skill_lvl}. You have learned a new skill.")
+        delay_message()
+        
  
-    else: # If fail quiz
-        print(sage_dialogue[str(skill_lvl)]["wrong"])
+    else:
+        print(f"{sage_data[INDEX_FOR_SAGE_BOO][str(skill_lvl)]} Your skill level is now {skill_lvl}. You have learned a new skill.")
+        delay_message()
     
-    count += 1 # To record if it is the first time encountering sage 
+    count += 1
     return (skill_lvl, count)
-        
-    
-
-    
