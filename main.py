@@ -152,7 +152,6 @@ def play_game(maps, ADD_OTHER_FILES=True):
             if game_map[player_pos[0]][player_pos[1]] == "S":
                 skill_lvl, first_encounter = meet_sage(skill_lvl, player_class, first_encounter)
                 player_skills[f'{skill_lvl}'] = skills[player_class][f'{skill_lvl}']
-                delay_message()
                 
             if game_map[player_pos[0]][player_pos[1]] == "H":
                 Heal_art = """
@@ -185,7 +184,8 @@ def play_game(maps, ADD_OTHER_FILES=True):
                 player_health += 30 
                 if player_health > max_health:
                     player_health = max_health
-                
+                print(f"You now have {player_health} health.")
+                delay_message()
 
             # Trigger boss event when player touches the B tile
             if game_map[player_pos[0]][player_pos[1]] == "B":
