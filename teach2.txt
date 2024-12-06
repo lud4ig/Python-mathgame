@@ -1,0 +1,29 @@
+BOBMAS stands for Brackets, Orders, Division, Multiplication, Addition, Subtraction 
+In a math equations, follow the BOBMAS rule. 
+1st: (B) - Solve the bractets first 
+2nd: (O) - Handle any power or square roots 
+3rd: (DM) - Handle division and multiplication from left to right (as per taught by the previous mage) 
+4th: (AS) - Handle addition and subtraction from left to right (as per taught by the previous mage 
+I have am examples here, read through if you need. 
+Example: (8x5) - (35/5) x (7+3)
+Step 1: Solve the brackets. 
+        ~ 8 x 5 = 40 
+        ~ 35 / 5 = 7 
+        ~ 7 + 3 = 10 
+        40 - 7 x 10 
+Step 2: Solve the squars and roots.In this example there is no squares and roots or move on to step 3
+Step 3: Solve the division and multiplication based on left to right sequence. 
+        ~ 7 x 10 = 70
+        40 - 70 
+Step 4 : Solve the addition and subtraction. 
+         ~ 40 - 70 = -30
+So ... (8x5) - (35/5) x (7+3) = -30
+Try this yourself if you need.  
+(25+15) / 5 + (6x4) - 9 
+The answer is 23
+If you can't get the answer write on a paper and solve in this order: 
+1. (25+15)  = ? 
+2. (6 x 4) = ? 
+3. (25+15) / 5 = ? 
+4. (25+15) / 5 + (6x4) = ? 
+5. (25+15) / 5 + (6x4) - 9 = ? (This should give you 23 else check the calculation above). 
