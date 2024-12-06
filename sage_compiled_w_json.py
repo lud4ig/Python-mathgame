@@ -1,81 +1,93 @@
 import json
 import random 
-from utils import delay_message 
+from utils import delay_message, clear_screen
 
 # To load json file 
-with open("sage.json", 'r') as f:
-    sage = json.load(f)
+with open("assets/sage.json", 'r') as f:
+    sage_data = json.load(f)
 
-with open("sage_skills.json", 'r') as f:
-    sage_skills = json.load(f)
+with open("assets/skills.json", 'r') as f:
+    skills = json.load(f)
 
-# Load teaching sage text (for the 3 levels of teaching only)
-with open(sage["3"]["teaching_sage"], 'r') as file:
-    teaching_text = file.read()
+def meet_sage (skill_lvl, player_class, first_encounter):
 
-
-
-# Skills nare
-correct_response = {
+    correct_response = {
     "1": ("Brilliant! I knew you had it in you—great work!\n"
-          "You have learned Skill 2: {list(sage_skills[player_class][skill_lvl].keys())[0]} \n"
+          f"You have learned Skill 2: {list(skills[player_class][str(skill_lvl+1)].keys())[0]} \n"
           "That’s all from me for now. Safe travels, brave one! \n"
           "Something tells me you’re destined for greatness. I’ll be rooting for you!\n"),
     "2": ("Hmph. I’ll admit, that was better than I expected. \n"
-          "You have learned Skill 3: {list(sage_skills[player_class][skill_lvl].keys())[0]} \n"
+          f"You have learned Skill 3: {list(skills[player_class][str(skill_lvl+1)].keys())[0]} \n"
           "That’s all the help you’ll get from me. \n"
           "Now go! The world won’t save itself, and I’ve no time for slackers.\n"),
     "3": ("Yes, that is correct. Your insight serves you well.\n"
           "Congratulations! \n" 
-          "You have learned the ultimate skill: {list(sage_skills[player_class][skill_lvl].keys())[0]} \n" 
+          f"You have learned the ultimate skill: {list(skills[player_class][str(skill_lvl+1)].keys())[0]} \n" 
           "Go forth, hero, and fulfil your destiny. \n" 
           "The world’s hope rests with you, and you have proven yourself worthy of that burden. \n"
           "Remember, even in darkness, the light of wisdom shall guide you.\n")
-}
-
-
-
-def meet_sage (skill_lvl):
-    score = 0
-    print(sage[str(skill_lvl)]["art"])
+        }   
     
-    print(sage[str(skill_lvl)]["welcome"])
-    
-    delay_message()# Requires user to press enter to continue
+    if first_encounter: # if it is the first time meeting this sage
+        print(sage_data[str(skill_lvl)]["art"])
+        print(sage_data[str(skill_lvl)]["welcome"])
+        delay_message()
+        clear_screen()
+    else:
+        print("Oh hey there... you again.")
+        delay_message()
+        clear_screen()
 
-    with open(sage[str(skill_lvl)]["teaching_sage"], 'r') as file:
-        teaching_text = file.read()
+    if skill_lvl == 1:
+        with open('teach1.txt', 'r') as file:
+            teaching_text = file.read()
+    elif skill_lvl == 2:
+        with open('teach2.txt', 'r') as file:
+            teaching_text = file.read()
+    else:
+        with open('teach3.txt', 'r') as file:
+            teaching_text = file.read()
+
     print(teaching_text)
+
+    delay_message()# Requires user to press enter to continue
+
+    print(sage_data[str(skill_lvl)]["quiz_time"])
     
     delay_message()# Requires user to press enter to continue
     
-    print(sage[str(skill_lvl)]["quiz_time"])
-    
-    delay_message()# Requires user to press enter to continue
-    
-    quiz = sage[str(skill_lvl)]["quiz"]
+    score = 0
+    quiz = sage_data[str(skill_lvl)]["quiz"]
     questions_list = list(quiz.values())
     random_questions = random.sample(questions_list, 2)
     for idx, question in enumerate(random_questions, start=1):
         print(f"Question {idx}: {question['question']}")
         user_answer = input("Your answer: ")
-        if user_answer =="" or user_answer.isalpha() or not user_answer.isalnum(): # if input not numbers
-            score =score
+        if user_answer == "" or not user_answer.isdigit(): # if input not numbers
+            print("Invalid input! Moving to the next question.")
+            delay_message()
+            clear_screen()
         else:
             user_answer = float(user_answer) 
             if user_answer == question['answer']:
-                score += 1 
+                print("Correct!")
+                score += 1
+                delay_message()
+                clear_screen() 
             else: 
-                score = score
+                print("Wrong answer.")
+                delay_message()
+                clear_screen()
     
     if score >= 1: 
         print(correct_response[str(skill_lvl)])
         skill_lvl = skill_lvl + 1 
+        first_encounter = True
     else: 
-        print(sage[str(skill_lvl)]["wrong"])
-    
-    return skill_lvl
-        
-        
-    
-meet_sage(1)
+        print(sage_data[str(skill_lvl)]["wrong"])
+        first_encounter = False
+
+    delay_message()
+    clear_screen()
+
+    return skill_lvl, first_encounter

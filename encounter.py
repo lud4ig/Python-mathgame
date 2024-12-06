@@ -101,7 +101,7 @@ def mob_encounter(player_health, player_skills, player_class):
             mob_health -= damage
             print(f"Congrats! You have dealt {damage} damage to the mob. The mob now has {mob_health} health.")
         else:
-            player_health -= damage*5
+            player_health -= damage*3
             print(f"That answer was incorrect. The correct answer was {correct_answer}.")
 
     if player_health <= 0:
@@ -167,13 +167,13 @@ def boss_encounter(player_health, player_skills, player_class):
                 print("Invalid input. Please try again!")
             elif not player_answer.isnumeric():
                 print("Enter a number! Please try again!")
-            correct_answer = questions["boss"][question_number][question]
-            if int(player_answer) == correct_answer:
-                boss_health -= damage
-                print(f"Congrats! You have dealt {damage} damage to the boss. The boss now has {boss_health} health.")
-            else:
-                player_health -= damage*5
-                print(f"That answer was incorrect. The correct answer was {correct_answer}.")
+        correct_answer = questions["boss"][question_number][question]
+        if int(player_answer) == correct_answer:
+            boss_health -= damage
+            print(f"Congrats! You have dealt {damage} damage to the boss. The boss now has {boss_health} health.")
+        else:
+            player_health -= damage*3
+            print(f"That answer was incorrect. The correct answer was {correct_answer}.")
     if player_health <= 0:
         return False
     else:

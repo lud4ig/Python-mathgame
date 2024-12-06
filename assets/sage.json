@@ -2,10 +2,8 @@
     "1": {
     "art": "                .::--:     .....         \n              .::::--=+=-  --=+++:        \n            :-----====+--.:=++*#*+        \n           -=--:----+++=   -*****-        \n         .---=++++++++++.  :++=-          \n     ..=+*%###%%%%%###%##+--+=            \n   :+*%%%%+-=---:---=-+%%%%=#+:           \n =#%%%%*%%=--::::::::--#%%*#%%%%=         \n:%%%%####-:...     ...:-##*##*##*         \n  :=+**--:..         .:-**#**=-.          \n      :=---==-::.:-===++**-               \n      :==+++***+=**++++-=*+               \n      -==---==++**=+++++==*:              \n     --+--=--==+++=-=+**=+%*              \n     =*+*+----=+:++==***%#*%-             \n    .**=---=-=-=:==+**+++**%=.            \n   -++#*=-------:--**+===*##==:           \n .-==*###=-::.....-*=-==#%##+--=.         \n-=+*##%%**+**+#%%%####*##%%%%***+-        \n",
     "welcome": "You have encountered a sage!  \nSages are masters of their craft, ready to share their wisdom with those deemed worthy. \nLearn from them to unlock new skills and enhance your abilities! \nHello there, traveller! \nI am here to help you power up. Isnt this exciting? \nAlright, shall we begin? \n",
-    "quiz_time": "Wonderful! Now, let’s see how well you’ve grasped it.\n",  
-    "wrong": "Oh no, close but not quite! \n Don’t worry, you’re learning. \nJust remember: Solve it from left to right.\n Practice makes perfect!\n",
-    "correct": "d",
-    "teaching_sage": "C:\\Users\\Xin Yi\\Desktop\\Computation\\DTP1\\teach1.txt",
+    "quiz_time": "Wonderful! Now, let\\’s see how well you\\’ve grasped it.\n",  
+    "wrong": "Oh no, close but not quite! \n Don\\’t worry, you\\’re learning. \nJust remember: Solve it from left to right.\n Practice makes perfect!\n",
     "quiz": {
         "1":{"question":"Solve: 25+30-15 \n","answer":40},
         "2":{"question":"Solve: 150-25+50 \n","answer":175},
@@ -20,9 +18,8 @@
     "2":{
     "art": "                                          .         \n                                        .=+:        \n                                        **+=        \n                         -.            :#*+-        \n    .               ***##=            -#%#*         \n   -:              -##%*              +*+++.        \n :-:=:           .+#####+             =#++:         \n+++=+*+=       -*%########:           -#+-          \n:*++++*=    -*%%%%%%#####%=.          -:-           \n=++++*#      -*%%%%###***###=         =-.           \n.++++*#.      +%%%###########=       .==            \n-+%*%%%##=   =%%%%%*--=##+==#%*    .:=-=            \n -*#%%%%###= %#+***+##++=*%*@%+:-:-%%%%#=           \n      =%%%#*#%#**+++====+-+-=-++%###%%%#+           \n       *%*==%###+===:::==++=:#*%*+%%#%#*            \n       -####**###++----=::::=+*####-==              \n        .#%######%=-=:+:::::=-%#*  .+.              \n          -*#%%#%+--=:+:-:::+:=    ==               \n            +%%#+-=-=++-=:--+---=  +-               \n            :%%+-==+##%#*=-=%+:-. :+.               \n            :%%%*#######%%%##*    ==                \n            -%%%############%#   .+:                \n            +%%%%###########%#.   .                 \n            #%%%%%%%##########=                     \n           .%%%%###############                     \n           =%%%%%%%%###########+                    \n           -#@@@%%%%%%%%%%%%#*=.                    \n             +++%%%%+:+%%##+-*                      \n             :**+++*-.+*++***=                      \n",
     "welcome": "You have encounted a sage! \nHmph. Another feeble adventurer. \nYour skills are weak—barely worth my time. \nBut... I suppose I can teach you BOBMAS rule. \nPay attention! \n",
-    "quiz_time": "Enough spoon-feeding. \nLet’s see if you were listening. \n",
-    "wrong": "Ugh… wrong. \nIt’s like I said: Use the BODMAS rule and solve from left to right. \nFocus this time, will you?\n",
-    "teach_sage": "C:\\Users\\Xin Yi\\Desktop\\Computation\\DTP1\\teach2.txt",
+    "quiz_time": "Enough spoon-feeding. \nLet\\’s see if you were listening. \n",
+    "wrong": "Ugh… wrong. \nIt\\’s like I said: Use the BODMAS rule and solve from left to right. \nFocus this time, will you?\n",
     "quiz":{
         "1":{"question":"Solve: (15+5)x3-20 \n","answer":40},
         "2":{"question":"Solve: 100-(24/6+8) \n","answer":88},
@@ -39,7 +36,6 @@
     "welcome": "You have encounted a sage! \nGreetings, young one. \nYour journey has been long, and the road ahead will test your very soul. \nBut first, it is time to learn the final lesson on how to analysis problem statement.\n",
     "quiz_time" : "Now, let us see if you have the wisdom to wield such power. \nYour understanding will be tested. \n",
     "wrong": "Not quite, but do not despair. \nPatience is the mark of the wise. \nRemember this: Read carefully, look out for keywords, solve step by step. \n Don't be disheartne just try again, you can do it!",
-    "teaching_sage": "C:\\Users\\Xin Yi\\Desktop\\Computation\\DTP1\\teach3.txt",
     "quiz":{
         "1": {"question": "Sarah took 15 mins to walk 1.5km, how long will it take her to walk 3.5km?", 
         "answer": 45},
