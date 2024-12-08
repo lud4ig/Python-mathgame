@@ -1,20 +1,48 @@
-import json
 from generate_maze import maze, generate_maze, ensure_connected, place_start_and_end, place_s_and_h, place_perimeter
 from navigation import display_map, find_player_start, is_walkable, check_random_encounter
 from utils import clear_screen, delay_message, format_entity_info
 from encounter import mob_encounter, boss_encounter
 from sage_compiled_w_json import meet_sage
 import random
+import os
+import subprocess
+import platform
+import json
 
 with open("assets/math_problems.json", 'r') as f:
     questions = json.load(f)
 
 with open("assets/skills.json", 'r') as f:
     skills = json.load(f)
+    
+def play_music(file_path):
+    """
+    Plays a song to set the mood.
+    
+    Parameters: 
+        file_path (string): Relative file path of the .mp3 file to be played
+        
+    This function does not return any values.
+    """
+    # Music credits
+    # Composer: Nauts
+    # Producer: Cosmograph
+    # Copyright: SHIFT UP CORP
+    system = platform.system()
+    if system == "Windows":
+        os.startfile(file_path)
+    elif system == "Darwin":
+        subprocess.run(["open", file_path])
+    elif system == "Linux":
+        subprocess.run(["xdg-open", file_path])
+    else:
+        return
 
 def show_rules():
     """
     Prints out the rules of the game to the player.
+    
+    This function does not take in any parameters and does not return any values.
     """
     clear_screen()
     print("=== GAME RULES ===")
@@ -32,6 +60,14 @@ def show_rules():
     delay_message()
 
 def title_screen():
+    """
+    Displays the title screen.
+    
+    Returns:
+        menu_choice (string): menu choice
+    
+    This function does not take in any parameters.
+    """
     clear_screen()
     print("======================================")
     print("       WELCOME, BRAVE WARRIOR!")
@@ -58,6 +94,15 @@ def load_maps(filename):
         return json.load(file)
         
 def get_map_choice(maps):
+    """
+    Decides the map/difficulty based on player choice.
+    
+    Parameters:
+        maps (json): list of premade maps
+    
+    Returns:
+        difficulty (string): Selected difficulty
+    """
     clear_screen()
     print("Select a map: " + ", ".join(maps.keys()) + ", or 'random' for a randomly generated map.")
     difficulty = input("Enter your choice: ").strip().lower()
@@ -70,7 +115,16 @@ def get_map_choice(maps):
     return difficulty
     
 def load_map(difficulty, maps):
+    """
+    Loads the map or generates one based on selected difficulty
     
+    Parameters:
+        difficulty (string): Selected difficulty
+        maps (json): list of premade maps
+        
+    Returns:
+        game_map: Either pre-made game map or randomly generated map.
+    """
     if difficulty == "random":
         generate_maze() 
         ensure_connected()
@@ -84,6 +138,14 @@ def load_map(difficulty, maps):
     return game_map
     
 def get_class_choice():
+    """
+    Gets the class choice from player input.
+    
+    Returns:
+        player_class (string): One of the four player classes.
+    
+    This function does not take in any parameters.
+    """
     print("Select a class: " + ", ".join(skills.keys()))
     player_class = None
     while player_class not in skills or player_class is None:
@@ -93,6 +155,14 @@ def get_class_choice():
     return player_class
     
 def get_player_name():
+    """
+    Get player name based on player input.
+    
+    Returns:
+        player_name (string): Name of player
+        
+    This function does not take in any parameters.
+    """
     clear_screen()
     print(f"What is your name, brave warrior?\n")
     player_name = input("Enter your name: ")
@@ -251,4 +321,5 @@ def main():
             delay_message()
 
 if __name__ == "__main__":
+    play_music("assets\\ice_dragon_saga.mp3")
     main()
