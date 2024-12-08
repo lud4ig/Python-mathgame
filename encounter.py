@@ -1,4 +1,4 @@
-from utils import clear_screen, delay_message
+from utils import clear_screen, delay_message, create_health_bar, format_entity_info, colors
 import json
 import random
 
@@ -26,12 +26,12 @@ def skill_screen(player_skills, player_class):
             print("You do not have this skill. Please try again!")
     return chosen_skill
 
-def mob_encounter(player_health, player_skills, player_class):
+def mob_encounter(player_name, player_current_health, player_skills, player_class):
     """
     Takes in player health as an integer and player_skills as a dictionary
     of the skills the current player has acquired.
 
-    Returns True as well as the player_health and player_skills in a list if player has survived the mob encounter and can continue the game
+    Returns True as well as the player_current_health and player_skills in a list if player has survived the mob encounter and can continue the game
     Returns False if player died
     """
     print("\033[33mYou encounter a monster!\033[0m") 
@@ -53,24 +53,33 @@ def mob_encounter(player_health, player_skills, player_class):
         for mob in mobs:
             if mobs[mob]["Difficulty"] == "High":
                 possible_mobs.append(mob)
+                
     mob = random.choice(possible_mobs)
     mob_name = mobs[mob]["Mob"]
-    mob_health = mobs[mob]["Health"]
+    mob_max_health = mobs[mob]["Health"]
+    mob_current_health = mob_max_health
     mob_art = mobs[mob]["Art"]
-    clear_screen()
-    print("Mob Name:", mob_name, "\nMob Art:", mob_art, "\nMob Health:", mob_health) # print mob name and health
-    while mob_health > 0 and player_health > 0:
-        # print the list of skills that the player can use against the mob, from 1 to 4 (that is, if the player has it)
-        print("You have", player_health, "health.")
+    
+    while mob_current_health > 0 and player_current_health > 0:
+        
+        clear_screen()
+        
+        mob_information = format_entity_info(mob_name, mob_current_health, mob_max_health, "RED", mob_art)
+    
+        player_information = format_entity_info(player_name, player_current_health, 100, "GREEN") 
+        
+        print(mob_information)
+        print(player_information)
+        
         chosen_skill = skill_screen(player_skills, player_class)
         skill_tuple = list(player_skills[chosen_skill].items())[0] # (key, value)
         power_name, damage = skill_tuple
+        
         # validate input
         # after player inputs name of skill, the mob will ask a question from math_problems.json
         # if the player uses skill level 1, question will be from easy key of math_problems
         # if player uses skill level 2, qn will be from medium etc.
-        # show question
-        clear_screen()
+        # show question        
         if player_skills[chosen_skill][power_name] == 10:
             question_number = random.choice(list(questions["easy"].keys()))
             question = list(questions["easy"][question_number].keys())[0]
@@ -89,6 +98,9 @@ def mob_encounter(player_health, player_skills, player_class):
             question_number= random.choice(list(questions["very_hard"].keys()))
             question = list(questions["very_hard"][question_number].keys())[0]
             correct_answer = questions["very_hard"][question_number][question]
+        
+        clear_screen()
+        
         print(question)
         player_answer = None
         while not player_answer or not player_answer.isnumeric():
@@ -98,24 +110,30 @@ def mob_encounter(player_health, player_skills, player_class):
             elif not player_answer.isnumeric():
                 print("Enter a number! Please try again!")
         if int(player_answer) == correct_answer:
-            mob_health -= damage
-            print(f"Congrats! You have dealt {damage} damage to the mob. The mob now has {mob_health} health.")
+            clear_screen()
+            mob_current_health -= damage
+            print(f"BAM!!! You have dealt {damage} damage to {mob_name}!")
+            delay_message()
         else:
-            player_health -= damage*3
-            print(f"That answer was incorrect. The correct answer was {correct_answer}.")
+            clear_screen()
+            player_current_health -= damage*3
+            print(f"WOOSH! You missed! The {mob_name} retaliates and hits you for {damage*3} damage!")
+            delay_message()
 
-    if player_health <= 0:
-        return [False, player_health, player_skills]
+    if player_current_health <= 0:
+        return [False, player_current_health, player_skills]
     else:
-        print(f"Congrats! You have beaten the mob. After the battle, you have {player_health} health.")
+        print(f"Congrats! You have beaten the mob. After the battle, you have {player_current_health} health.")
         delay_message()
-        return [True, player_health, player_skills]
+        return [True, player_current_health, player_skills]
 
-def boss_encounter(player_health, player_skills, player_class):
-    print("\033[31mYou encounter the final boss!\033[0m") 
+def boss_encounter(player_name, player_current_health, player_skills, player_class):
+    print(f"{colors['RED']}You encounter the final boss!{colors['RESET']}") 
     delay_message()
+    clear_screen()
     boss_name = "The Division Dragon"
-    boss_health = 300
+    boss_max_health = 300
+    boss_current_health = boss_max_health
     Dragon_art = """
                                   \\  `                                       
      /)         ,   '--.           \\    `                                    
@@ -148,11 +166,14 @@ def boss_encounter(player_health, player_skills, player_class):
              .`.|
               `._>
 """
-    clear_screen()
-    print(f"Boss name: {boss_name} | Boss health: {boss_health}")
-    print(Dragon_art)
-    while boss_health > 0 and player_health > 0:
-        print("You have", player_health, "health.")
+    while boss_current_health > 0 and player_current_health > 0:
+        boss_information = format_entity_info(boss_name,boss_current_health, boss_max_health, "RED", Dragon_art)
+    
+        player_information = format_entity_info(player_name, player_current_health, 100, "GREEN") 
+            
+        print(boss_information)
+        print(player_information)
+
         chosen_skill = skill_screen(player_skills, player_class)
         skill_tuple = list(player_skills[chosen_skill].items())[0] # (key, value)
         power_name, damage = skill_tuple
@@ -169,12 +190,16 @@ def boss_encounter(player_health, player_skills, player_class):
                 print("Enter a number! Please try again!")
         correct_answer = questions["boss"][question_number][question]
         if int(player_answer) == correct_answer:
-            boss_health -= damage
-            print(f"Congrats! You have dealt {damage} damage to the boss. The boss now has {boss_health} health.")
+            boss_current_health -= damage
+            print(f"KACHUNK!!! You have dealt {damage} damage to {boss_name}!")
+            delay_message()
+            clear_screen()
         else:
-            player_health -= damage*3
-            print(f"That answer was incorrect. The correct answer was {correct_answer}.")
-    if player_health <= 0:
+            player_current_health -= damage*3
+            print(f"WOOSH! {boss_name} cleanly dodged your attack!\n {boss_name} retaliates with a deadly strike for {damage*3} damage!")
+            delay_message()
+            clear_screen()
+    if player_current_health <= 0:
         return False
     else:
         return True

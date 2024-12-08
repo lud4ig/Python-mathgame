@@ -1,7 +1,7 @@
 import json
 from generate_maze import maze, generate_maze, ensure_connected, place_start_and_end, place_s_and_h, place_perimeter
 from navigation import display_map, find_player_start, is_walkable, check_random_encounter
-from utils import clear_screen, delay_message
+from utils import clear_screen, delay_message, format_entity_info
 from encounter import mob_encounter, boss_encounter
 from sage_compiled_w_json import meet_sage
 import random
@@ -56,6 +56,51 @@ def load_maps(filename):
     """
     with open(filename, 'r') as file:
         return json.load(file)
+        
+def get_map_choice(maps):
+    clear_screen()
+    print("Select a map: " + ", ".join(maps.keys()) + ", or 'random' for a randomly generated map.")
+    difficulty = input("Enter your choice: ").strip().lower()
+    while difficulty not in maps and difficulty != "random":
+        print("Select a map: " + ", ".join(maps.keys()) + ", or 'random' for a randomly generated map.")
+        print("Invalid choice! Please pick again!")
+        delay_message()
+        difficulty = input("Enter your choice: ").strip().lower()
+
+    return difficulty
+    
+def load_map(difficulty, maps):
+    
+    if difficulty == "random":
+        generate_maze() 
+        ensure_connected()
+        start_x, start_y, end_x, end_y = place_start_and_end()
+        place_s_and_h(start_x, start_y, end_x, end_y)
+        place_perimeter()
+        game_map = maze
+    else:
+        game_map = maps[difficulty]
+    
+    return game_map
+    
+def get_class_choice():
+    print("Select a class: " + ", ".join(skills.keys()))
+    player_class = None
+    while player_class not in skills or player_class is None:
+        player_class = input("Enter your class choice: ").strip().lower()
+        if player_class not in skills:
+            print("Invalid choice! Please try again!")
+    return player_class
+    
+def get_player_name():
+    clear_screen()
+    print(f"What is your name, brave warrior?\n")
+    player_name = input("Enter your name: ")
+    clear_screen()
+    print(f"Welcome, {player_name}!")
+    delay_message()
+    return player_name
+        
 
 def play_game(maps, ADD_OTHER_FILES=True):
     """
@@ -66,47 +111,29 @@ def play_game(maps, ADD_OTHER_FILES=True):
         
     This function does not return any values.
     """
-    player_health = 100
+    player_max_health = 100
+    player_current_health = player_max_health
     skill_lvl = 1
     first_encounter = True   
-    print("Select a map: " + ", ".join(maps.keys()) + ", or 'random' for a randomly generated map.")
-    difficulty = input("Enter your choice: ").strip().lower()
 
-    if difficulty not in maps and difficulty != "random":
-        print("Invalid choice! Returning to main menu.")
-        delay_message()
-        return
-
-    if difficulty == "random":
-        generate_maze() 
-        ensure_connected()
-        start_x, start_y, end_x, end_y = place_start_and_end()
-        place_s_and_h(start_x, start_y, end_x, end_y)
-        place_perimeter()
-        game_map = maze
-    else:
-        game_map = maps[difficulty]
-
-    print("Select a class: " + ", ".join(skills.keys()))
-    player_class = None
-
-    while player_class not in skills or player_class is None:
-        player_class = input("Enter your class choice: ").strip().lower()
-        if player_class not in skills:
-            print("Invalid choice! Please try again!")
-
-    else:
-        player_skills = {} # player skills will be a dictionary of dictionaries
-        player_skills['1'] = skills[player_class]['1'] # dictionary with only the 1st skill from the class when player starts the game {'1': {'Mighty Strike': 10}}
-        player_pos = find_player_start(game_map)
-        first_move = True
-        step_count = 0
+    player_name = get_player_name()
+    difficulty = get_map_choice(maps)
+    game_map = load_map(difficulty, maps)
+    player_class = get_class_choice()
+    
+    player_skills = {} # player skills will be a dictionary of dictionaries
+    player_skills['1'] = skills[player_class]['1'] # dictionary with only the 1st skill from the class when player starts the game {'1': {'Mighty Strike': 10}}
+    player_pos = find_player_start(game_map)
+    first_move = True
+    step_count = 0
 
     # Main loop for the game
     while True:
         clear_screen()
         display_map(game_map, player_pos)
-        print("(WASD) Move | (P)layer Information | (Q)uit")
+        player_info = format_entity_info(player_name, player_current_health, player_max_health, "GREEN", art=None)
+        print(f"\n{player_info}\n")
+        print("(WASD) Move | (Q)uit")
         key = input("Your move: ").lower()
 
         # Player options
@@ -138,9 +165,9 @@ def play_game(maps, ADD_OTHER_FILES=True):
             if game_map[player_pos[0]][player_pos[1]] == "P":
                 step_count += 1
                 if check_random_encounter(step_count):
-                    return_object = mob_encounter(player_health, player_skills, player_class)
+                    return_object = mob_encounter(player_name, player_current_health, player_skills, player_class)
                     alive = return_object[0]
-                    player_health = return_object[1]
+                    player_current_health = return_object[1]
                     player_skills = return_object[2]
                     if alive:
                         step_count = 0
@@ -150,8 +177,14 @@ def play_game(maps, ADD_OTHER_FILES=True):
                         break
                     
             if game_map[player_pos[0]][player_pos[1]] == "S":
+                clear_screen()
+                print("You have encountered a sage!")
+                delay_message()
+                clear_screen()
                 skill_lvl, first_encounter = meet_sage(skill_lvl, player_class, first_encounter)
                 player_skills[f'{skill_lvl}'] = skills[player_class][f'{skill_lvl}']
+                if first_encounter:  # Only remove the tile if the encounter was successful
+                    game_map[player_pos[0]][player_pos[1]] = 'P'  # Replace 'S' with a blank space
                 
             if game_map[player_pos[0]][player_pos[1]] == "H":
                 Heal_art = """
@@ -180,17 +213,15 @@ def play_game(maps, ADD_OTHER_FILES=True):
                 print(Heal_art)
                 print ("You found a healing point! You recovered some health!")
                 delay_message()
-                max_health = 100
-                player_health += 30 
-                if player_health > max_health:
-                    player_health = max_health
-                print(f"You now have {player_health} health.")
+                player_current_health += 30 
+                if player_current_health > player_max_health:
+                    player_current_health = player_max_health
+                print(f"You now have {player_current_health} health.")
+                game_map[player_pos[0]][player_pos[1]] = 'P'
                 delay_message()
 
-            # Trigger boss event when player touches the B tile
             if game_map[player_pos[0]][player_pos[1]] == "B":
-                #PLACEHOLDER, REWRITE IT WITH THE APPROPRIATE BOSS FUNCTION
-                alive = boss_encounter(player_health, player_skills, player_class)
+                alive = boss_encounter(player_name, player_current_health, player_skills, player_class)
                 if alive:
                     clear_screen()
                     print("Congrats! You have beaten the boss! You are now ready to tackle the upcoming challenges in the world of mathematics.")

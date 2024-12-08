@@ -1,5 +1,5 @@
 import random
-from utils import clear_screen, delay_message
+from utils import clear_screen, delay_message, colors
 
 def display_map(game_map, player_pos, visibility=1):
     """
@@ -14,15 +14,6 @@ def display_map(game_map, player_pos, visibility=1):
     """
 
     # I ChatGPT'd these colors cause I don't know the ANSI color codes by heart
-    colors = {
-        "T": "\033[90m",  # Greyish
-        "P": "\033[97m",  # White
-        "S": "\033[96m",  # Cyan ish?
-        "H": "\033[92m",  # Green
-        "B": "\033[91m",  # Red
-        "@": "\033[93m",  # Yellow
-    }
-    reset_color = "\033[0m"
 
     px, py = player_pos
     x, y = len(game_map), len(game_map[0])
@@ -39,7 +30,7 @@ def display_map(game_map, player_pos, visibility=1):
         for y_idx in range(start_y, end_y):
             if abs(x_idx - px) <= visibility and abs(y_idx - py) <= visibility:
                 char = "@" if (x_idx, y_idx) == player_pos else game_map[x_idx][y_idx]
-                colored_char = f"{colors.get(char, reset_color)}{char}{reset_color}"
+                colored_char = f"{colors.get(char)}{char}{colors['RESET']}"
             row += colored_char + " "
         output.append(row)
     print("\n".join(output))

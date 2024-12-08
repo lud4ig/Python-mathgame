@@ -2,7 +2,7 @@
     "1": {
     "art": "                .::--:     .....         \n              .::::--=+=-  --=+++:        \n            :-----====+--.:=++*#*+        \n           -=--:----+++=   -*****-        \n         .---=++++++++++.  :++=-          \n     ..=+*%###%%%%%###%##+--+=            \n   :+*%%%%+-=---:---=-+%%%%=#+:           \n =#%%%%*%%=--::::::::--#%%*#%%%%=         \n:%%%%####-:...     ...:-##*##*##*         \n  :=+**--:..         .:-**#**=-.          \n      :=---==-::.:-===++**-               \n      :==+++***+=**++++-=*+               \n      -==---==++**=+++++==*:              \n     --+--=--==+++=-=+**=+%*              \n     =*+*+----=+:++==***%#*%-             \n    .**=---=-=-=:==+**+++**%=.            \n   -++#*=-------:--**+===*##==:           \n .-==*###=-::.....-*=-==#%##+--=.         \n-=+*##%%**+**+#%%%####*##%%%%***+-        \n",
     "welcome": "You have encountered a sage!  \nSages are masters of their craft, ready to share their wisdom with those deemed worthy. \nLearn from them to unlock new skills and enhance your abilities! \nHello there, traveller! \nI am here to help you power up. Isnt this exciting? \nAlright, shall we begin? \n",
-    "quiz_time": "Wonderful! Now, let\\’s see how well you\\’ve grasped it.\n",  
+    "quiz_time": "Wonderful! Now, let’s see how well you’ve grasped it.\n",  
     "wrong": "Oh no, close but not quite! \n Don\\’t worry, you\\’re learning. \nJust remember: Solve it from left to right.\n Practice makes perfect!\n",
     "quiz": {
         "1":{"question":"Solve: 25+30-15 \n","answer":40},
