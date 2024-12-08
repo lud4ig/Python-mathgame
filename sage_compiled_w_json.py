@@ -13,16 +13,16 @@ def meet_sage (skill_lvl, player_class, first_encounter):
 
     correct_response = {
     "1": ("Brilliant! I knew you had it in you—great work!\n"
-          f"\nYou have learned a new skill: {colors["@"]}{list(skills[player_class][str(skill_lvl+1)].keys())[0]}{colors['RESET']} \n\n"
+          f"\nYou have learned a new skill: {colors['@']}{list(skills[player_class][str(skill_lvl+1)].keys())[0]}{colors['RESET']} \n\n"
           "That’s all from me for now. Safe travels, brave one! \n"
           "Something tells me you’re destined for greatness. I’ll be rooting for you!\n"),
     "2": ("Hmph. I’ll admit, that was better than I expected. \n"
-          f"\nYou have learned an even more powerful: {list(skills[player_class][str(skill_lvl+1)].keys())[0]} \n\m"
+          f"\nYou have learned an even more powerful: {colors['@']}{list(skills[player_class][str(skill_lvl+1)].keys())[0]} \n\m"
           "That’s all the help you’ll get from me. \n"
           "Now go! The world won’t save itself, and I’ve no time for slackers.\n"),
     "3": ("Yes, that is correct. Your insight serves you well.\n"
           "Congratulations! \n" 
-          f"\nYou have learned the ultimate skill: {list(skills[player_class][str(skill_lvl+1)].keys())[0]} \n" 
+          f"\nYou have learned the ultimate skill: {colors['@']}{list(skills[player_class][str(skill_lvl+1)].keys())[0]} \n" 
           "Go forth, hero, and fulfil your destiny. \n" 
           "The world’s hope rests with you, and you have proven yourself worthy of that burden. \n"
           "Remember, even in darkness, the light of wisdom shall guide you.\n")

@@ -116,8 +116,8 @@ def mob_encounter(player_name, player_current_health, player_skills, player_clas
             delay_message()
         else:
             clear_screen()
-            player_current_health -= damage*3
-            print(f"WOOSH! You missed! The {mob_name} retaliates and hits you for {damage*3} damage!")
+            player_current_health -= damage
+            print(f"WOOSH! You missed! The {mob_name} retaliates and hits you for {damage} damage!")
             delay_message()
 
     if player_current_health <= 0:
@@ -195,8 +195,8 @@ def boss_encounter(player_name, player_current_health, player_skills, player_cla
             delay_message()
             clear_screen()
         else:
-            player_current_health -= damage*3
-            print(f"WOOSH! {boss_name} cleanly dodged your attack!\n {boss_name} retaliates with a deadly strike for {damage*3} damage!")
+            player_current_health -= damage
+            print(f"WOOSH! {boss_name} cleanly dodged your attack!\n {boss_name} retaliates with a deadly strike for {damage} damage!")
             delay_message()
             clear_screen()
     if player_current_health <= 0:
