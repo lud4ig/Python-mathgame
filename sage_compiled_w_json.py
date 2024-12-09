@@ -71,7 +71,6 @@ def meet_sage(skill_lvl, player_class, first_encounter):
     #     "8":{"question":"Solve: 7*4/2\n","answer":14}}
     # }
     questions_list = list(quiz.values()) # list of dictionaries of questions and answers
-    print(questions_list)
     random_questions = random.sample(questions_list, 2) # random.sample returns a list of length 2 of question dictionaries chosen from questions_list 
     for idx, question in enumerate(random_questions, start=1):
         print(sage_data[str(skill_lvl)]["art"])
