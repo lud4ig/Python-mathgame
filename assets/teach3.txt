@@ -8,7 +8,7 @@ Here are some points you should remember when solving problem statements:
 ------------------------------------------------------------------------------------------------
 Lets try one practice together! 
 Lisa has 10 apples, she gave Sherry 4 apples. She then bought 5 apples but 3 were rotten. How many fresh apples does she have now? 
-- Orginally: 10 apples 
+- Originally: 10 apples 
 - After give to friend: 10 -4 = 6 apples 
 - Bought apple: 6+5 = 11 
 - Remove rotten apples: 11-3 = 8
