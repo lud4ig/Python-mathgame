@@ -9,7 +9,7 @@ with open("assets/sage.json", 'r') as f:
 with open("assets/skills.json", 'r') as f:
     skills = json.load(f)
 
-def meet_sage (skill_lvl, player_class, first_encounter):
+def meet_sage(skill_lvl, player_class, first_encounter):
 
     correct_response = {
     "1": ("Brilliant! I knew you had it in you—great work!\n"
@@ -60,8 +60,19 @@ def meet_sage (skill_lvl, player_class, first_encounter):
     
     score = 0
     quiz = sage_data[str(skill_lvl)]["quiz"]
-    questions_list = list(quiz.values())
-    random_questions = random.sample(questions_list, 2)
+    # for eg.  quiz will be   
+    #    { "1":{"question":"Solve: 25+30-15 \n","answer":40},
+    #     "2":{"question":"Solve: 150-25+50 \n","answer":175},
+    #     "3":{"question":"Solve: 100+15-45\n","answer":70},
+    #     "4":{"question":"Solve: 80-45+5\n","answer":40},
+    #     "5":{"question":"Solve: 12x5/4\n","answer":15},
+    #     "6":{"question":"Solve: 60/5*3 \n","answer":36},
+    #     "7":{"question":"Solve: 12*2*1 \n","answer":24},
+    #     "8":{"question":"Solve: 7*4/2\n","answer":14}}
+    # }
+    questions_list = list(quiz.values()) # list of dictionaries of questions and answers
+    print(questions_list)
+    random_questions = random.sample(questions_list, 2) # random.sample returns a list of length 2 of question dictionaries chosen from questions_list 
     for idx, question in enumerate(random_questions, start=1):
         print(sage_data[str(skill_lvl)]["art"])
         print(f"\nQuestion {idx}: {question['question']}")
@@ -88,7 +99,7 @@ def meet_sage (skill_lvl, player_class, first_encounter):
         first_encounter = True
     else: 
         print(sage_data[str(skill_lvl)]["wrong"])
-        first_encounter = False
+        first_encounter = False #update this to false so that no more welcome next time
 
     delay_message()
     clear_screen()

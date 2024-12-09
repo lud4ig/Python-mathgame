@@ -9,16 +9,17 @@ with open("assets/math_problems.json", 'r') as f:
     questions = json.load(f)
 
 def skill_screen(player_skills, player_class):
-    """Takes in list of dictionaries of player skills, 
+    """Takes in dictionary of dictionaries of player skills, 
     and returns chosen number by player."""
     print("====================================================================")
     print(f"       Here are the skills that you currently have for the {player_class} class.\n       ")
     for skill in player_skills:
-        power_name, damage = list(player_skills[skill].items())[0]
+        # skill is the number (1, 2, 3)
+        power_name, damage = list(player_skills[skill].items())[0] # can only retrieve power name and damage by converting dict_items object into a list
         print(f"{skill}    {power_name}  {damage} Damage\n")
     print("====================================================================")
     chosen_skill = None
-    while not chosen_skill or chosen_skill not in player_skills:
+    while not chosen_skill or chosen_skill not in player_skills: #input validation
         chosen_skill = input("What skill would you like to use? Choose the number. ")
         if not chosen_skill:
             print("Invalid input. Please try again!")
@@ -37,7 +38,7 @@ def mob_encounter(player_name, player_current_health, player_skills, player_clas
     print("\033[33mYou encounter a monster!\033[0m") 
     delay_message()
     # choose random mob from mob json
-    # if player only has 1 ability, don't give a mob with so much damage
+    # if player only has 1 ability, don't give a mob with so much health
     if len(player_skills) == 1 or len(player_skills) == 2:
         mob_difficulty = "Low"
     else:
@@ -78,8 +79,7 @@ def mob_encounter(player_name, player_current_health, player_skills, player_clas
         # validate input
         # after player inputs name of skill, the mob will ask a question from math_problems.json
         # if the player uses skill level 1, question will be from easy key of math_problems
-        # if player uses skill level 2, qn will be from medium etc.
-        # show question        
+        # if player uses skill level 2, qn will be from medium etc.    
         if player_skills[chosen_skill][power_name] == 10:
             question_number = random.choice(list(questions["easy"].keys()))
             question = list(questions["easy"][question_number].keys())[0]
@@ -128,9 +128,21 @@ def mob_encounter(player_name, player_current_health, player_skills, player_clas
         return [True, player_current_health, player_skills]
 
 def boss_encounter(player_name, player_current_health, player_skills, player_class):
+    """
+    Takes in player health as an integer and player_skills as a dictionary of the skills the current player has acquired. 
+    Returns True as well as the player_health and player_skills in a list if player has survived the boss encounter and can continue the game. 
+    Returns False if player died.
+
+    Parameters:
+    player_health(int): Number of hp the player has
+    player_skills (dict): All skills of player
+    player_class (str): Chosen class by player, from main.py
+
+    """
     print(f"{colors['RED']}You encounter the final boss!{colors['RESET']}") 
     delay_message()
     clear_screen()
+    # initialise boss attributes
     boss_name = "The Division Dragon"
     boss_max_health = 300
     boss_current_health = boss_max_health
@@ -166,6 +178,8 @@ def boss_encounter(player_name, player_current_health, player_skills, player_cla
              .`.|
               `._>
 """
+    # logic of boss and mob encounter is very similar, just that there is only one preset set 
+    # of questions that can be asked by the boss
     while boss_current_health > 0 and player_current_health > 0:
         boss_information = format_entity_info(boss_name,boss_current_health, boss_max_health, "RED", Dragon_art)
     
