@@ -12,22 +12,22 @@ Remember these 3 points:
 2: Minus the first 2 numbers 
 3: Minus the result to the third number 
 ======================================== 
-Ever wondered what is the relation between addition and subtraction? 
-Addtions and Subtractions are the opposite of each other 
+Ever wondered what the relation between addition and subtraction is? 
+Addtions and Subtractions are the opposite of each other! 
 Let me show you with example: 
   1 + 2 + 4  = 7 
   1 + 2 = 7 - 4 
   3 = 3 
-Did you notice the 4 is brought over to the right side and the sign became - ?
+Did you notice that the 4 is brought over to the right side and the sign became - ?
 
 Let's try with the another example: 
   10 - 2 - 5  = 3
   10 - 2 = 3 + 5 
   8 = 8 
-Did you notice the 5 is brought over to the right side and the sign became + ?
-I hope you got the hook of it ;) 
+Did you notice that the 5 is brought over to the right side and the sign became + ?
+I hope you got the gist of it ;) 
 
-Lets now move on to Multiplication of 3 numbers 
+Now let's move on to Multiplication of 3 numbers 
 ======================================= 
 Remember these 3 points: 
 1: Start from left to right
@@ -43,17 +43,17 @@ Remember these 3 points:
 3: Divide the result to the third number
 ======================================== 
 
-Similar to addition and subtraction, there is a relation between division and multiplication? 
-Division and Multiplication are the opposite of each other 
-Let me show you with example: 
+Similar to addition and subtraction, is there a relation between division and multiplication? 
+Division and Multiplication are the opposite of each other!
+Let me show you with an example: 
   1 x 2 x 3  = 6 
   1 x 2 = 6 / 3 
   2 = 2
-Did you notice the 3 is brought over to the right side and the sign became / ? 
+Did you notice that the 3 is brought over to the right side and the sign became / ? 
 Let's try with the another example: 
   10 / 5 / 2  = 1
   10 / 5 = 1 x 2 
   2 = 2 
-Did you notice the 2 is brought over to the right side and the sign became x ? 
-You can try creating questions and solve it if you are not confident yet. 
-I hope you got the hook of it ;> 
+Did you notice that the 2 is brought over to the right side and the sign became x ? 
+If you are not confident yet, you can try creating your own questions and try them out yourself!
+I hope you got the gist of it ;> 
