@@ -2,7 +2,7 @@
     "1": {
     "art": "                .::--:     .....         \n              .::::--=+=-  --=+++:        \n            :-----====+--.:=++*#*+        \n           -=--:----+++=   -*****-        \n         .---=++++++++++.  :++=-          \n     ..=+*%###%%%%%###%##+--+=            \n   :+*%%%%+-=---:---=-+%%%%=#+:           \n =#%%%%*%%=--::::::::--#%%*#%%%%=         \n:%%%%####-:...     ...:-##*##*##*         \n  :=+**--:..         .:-**#**=-.          \n      :=---==-::.:-===++**-               \n      :==+++***+=**++++-=*+               \n      -==---==++**=+++++==*:              \n     --+--=--==+++=-=+**=+%*              \n     =*+*+----=+:++==***%#*%-             \n    .**=---=-=-=:==+**+++**%=.            \n   -++#*=-------:--**+===*##==:           \n .-==*###=-::.....-*=-==#%##+--=.         \n-=+*##%%**+**+#%%%####*##%%%%***+-        \n",
     "welcome": "You have encountered a sage!  \nSages are masters of their craft, ready to share their wisdom with those deemed worthy. \nLearn from them to unlock new skills and enhance your abilities! \nHello there, traveller! \nI am here to help you power up. Isnt this exciting? \nAlright, shall we begin? \n",
-    "quiz_time": "Wonderful! Now, let’s see how well you’ve grasped it.\n",  
+    "quiz_time": "Wonderful! Now, let\\’s see how well you\\’ve grasped it.\n",  
     "wrong": "Oh no, close but not quite! \n Don\\’t worry, you\\’re learning. \nJust remember: Solve it from left to right.\n Practice makes perfect!\n",
     "quiz": {
         "1":{"question":"Solve: 25+30-15 \n","answer":40},
@@ -17,7 +17,7 @@
     
     "2":{
     "art": "                                          .         \n                                        .=+:        \n                                        **+=        \n                         -.            :#*+-        \n    .               ***##=            -#%#*         \n   -:              -##%*              +*+++.        \n :-:=:           .+#####+             =#++:         \n+++=+*+=       -*%########:           -#+-          \n:*++++*=    -*%%%%%%#####%=.          -:-           \n=++++*#      -*%%%%###***###=         =-.           \n.++++*#.      +%%%###########=       .==            \n-+%*%%%##=   =%%%%%*--=##+==#%*    .:=-=            \n -*#%%%%###= %#+***+##++=*%*@%+:-:-%%%%#=           \n      =%%%#*#%#**+++====+-+-=-++%###%%%#+           \n       *%*==%###+===:::==++=:#*%*+%%#%#*            \n       -####**###++----=::::=+*####-==              \n        .#%######%=-=:+:::::=-%#*  .+.              \n          -*#%%#%+--=:+:-:::+:=    ==               \n            +%%#+-=-=++-=:--+---=  +-               \n            :%%+-==+##%#*=-=%+:-. :+.               \n            :%%%*#######%%%##*    ==                \n            -%%%############%#   .+:                \n            +%%%%###########%#.   .                 \n            #%%%%%%%##########=                     \n           .%%%%###############                     \n           =%%%%%%%%###########+                    \n           -#@@@%%%%%%%%%%%%#*=.                    \n             +++%%%%+:+%%##+-*                      \n             :**+++*-.+*++***=                      \n",
-    "welcome": "You have encounted a sage! \nHmph. Another feeble adventurer. \nYour skills are weak—barely worth my time. \nBut... I suppose I can teach you BOBMAS rule. \nPay attention! \n",
+    "welcome": "You have encounted a sage! \nHmph. Another feeble adventurer. \nYour skills are weak—barely worth my time. \nBut... I suppose I can teach you BODMAS rule. \nPay attention! \n",
     "quiz_time": "Enough spoon-feeding. \nLet\\’s see if you were listening. \n",
     "wrong": "Ugh… wrong. \nIt\\’s like I said: Use the BODMAS rule and solve from left to right. \nFocus this time, will you?\n",
     "quiz":{
@@ -41,17 +41,17 @@
         "answer": 45},
         "2":{"question":"Tom organised a fund raising charity and receivived a total of $350. However he spent a total of $27 on posters and getting lunch for the volunteers. The left overs will be donated to the elderly home care. How much will the elderly home care receive?\n",
         "answer":323},
-        "3":{"question":"Maria have 40 stickers. She wants to paste an equal number of stickers on each page of her book consisting 13 pages. What is the maximum number of stickes she can have on each page?\n",
+        "3":{"question":"Maria has 40 stickers. She wants to paste an equal number of stickers on each page of her book consisting 13 pages. What is the maximum number of stickers she can have on each page?\n",
         "answer":3},
         "4":{"question":"Bob is 12 years old this year, in 2 years time he will be twice as old as his younder brother. How old is his younger brother now?\n",
         "answer":5},
-        "5":{"question":"Emily needs 25 pen, but the store offers 1 free pen for every 10 purchaced. If each pen cost $2 how much does she needs to pay to get a total of 25 pens?\n",
+        "5":{"question":"Emily needs 25 pens, and the store offers 1 free pen for every 10 purchased. If each pen costs $2, how much does she needs to pay to get a total of 25 pens?\n",
         "answer":44},
-        "6":{"question":"A school bus have 50 seats. If a school is planning to bring 135 students and 35 teacher for an outing, how many school bus is required?\n",
+        "6":{"question":"A school bus has 50 seats. If a school is planning to bring 135 students and 35 teachers for an outing, how many school buses are required?\n",
         "answer":4},
-        "7":{"question":"A farmer plan 5 rows of corns. Each row contains 6 plants. If each plat produces 3 ear of corns, how many corns can the farmer harvest? \n",
+        "7":{"question":"A farmer planted 5 rows of corns. Each row contains 6 plants. If each plant produces 3 ears of corns, how many corns can the farmer harvest? \n",
         "answer":90},
-        "8":{"question":"In a class of 10 students, 6 students score 6/10, 3 students score 8/10 and 2 students scored full marks for their math paper. What is the average score of the class? (1 d.p.)\n",
+        "8":{"question":"In a class of 10 students, 6 students score 6/10, 3 students score 8/10 and 2 students scored full marks for their math paper. What is the average score of the class?\n",
         "answer":8}}
     }
         
