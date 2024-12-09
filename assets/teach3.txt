@@ -7,13 +7,13 @@ Here are some points you should remember when solving problem statements:
 5: Always remember to check your working before submitting 
 ------------------------------------------------------------------------------------------------
 Lets try one practice together! 
-Lisa has 10 apples, she gave sherry 4 apples. She then bought 5 apples but 3 were rotten. How many fresh apples does she have at the end of the day? 
+Lisa has 10 apples, she gave Sherry 4 apples. She then bought 5 apples but 3 were rotten. How many fresh apples does she have now? 
 - Orginally: 10 apples 
 - After give to friend: 10 -4 = 6 apples 
 - Bought apple: 6+5 = 11 
 - Remove rotten apples: 11-3 = 8
 This is how we determine that she only have 8 fresh apple left.
-Have you gotten how to solve these type of problems? 
-Here's another example for you try on ur own. I wont be helping you on this... 
-Sarah has 18 marbles. She have 5 friends and give each friend 2 marble. How many marbles does she have left? 
+Have you understood how to solve these type of problems? 
+Here's another example for you try on ur own. I won't be helping you this time though... 
+Sarah has 18 marbles. She have 5 friends and give each friend 2 marbles. How many marbles does she have left? 
 Ans: 8 marbles left. 
