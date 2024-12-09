@@ -232,31 +232,31 @@ def play_game(maps, ADD_OTHER_FILES=True):
 
             player_pos = new_pos
 
-            if game_map[player_pos[0]][player_pos[1]] == "P":
+            if game_map[player_pos[0]][player_pos[1]] == "P": # if player walks on a path tile
                 step_count += 1
-                if check_random_encounter(step_count):
+                if check_random_encounter(step_count): # if player encounters a mob
                     return_object = mob_encounter(player_name, player_current_health, player_skills, player_class)
                     alive = return_object[0]
                     player_current_health = return_object[1]
                     player_skills = return_object[2]
-                    if alive:
+                    if alive: # after beating a mob, probability of getting another mob resets to 0
                         step_count = 0
                     else:
                         print("You died! Try again next time!")
                         delay_message()
                         break
                     
-            if game_map[player_pos[0]][player_pos[1]] == "S":
+            if game_map[player_pos[0]][player_pos[1]] == "S": # if player walks on a sage tile
                 clear_screen()
                 print("You have encountered a sage!")
                 delay_message()
                 clear_screen()
                 skill_lvl, first_encounter = meet_sage(skill_lvl, player_class, first_encounter)
-                player_skills[f'{skill_lvl}'] = skills[player_class][f'{skill_lvl}']
+                player_skills[f'{skill_lvl}'] = skills[player_class][f'{skill_lvl}'] # update player_skills dictionary with a new dictionary of that new skill
                 if first_encounter:  # Only remove the tile if the encounter was successful
                     game_map[player_pos[0]][player_pos[1]] = 'P'  # Replace 'S' with a blank space
                 
-            if game_map[player_pos[0]][player_pos[1]] == "H":
+            if game_map[player_pos[0]][player_pos[1]] == "H": # if a player steps on a healing tile
                 Heal_art = """
                         _|_
                          | 
@@ -290,7 +290,7 @@ def play_game(maps, ADD_OTHER_FILES=True):
                 game_map[player_pos[0]][player_pos[1]] = 'P'
                 delay_message()
 
-            if game_map[player_pos[0]][player_pos[1]] == "B":
+            if game_map[player_pos[0]][player_pos[1]] == "B": # if player steps on boss tile
                 alive = boss_encounter(player_name, player_current_health, player_skills, player_class)
                 if alive:
                     clear_screen()

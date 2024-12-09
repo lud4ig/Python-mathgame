@@ -25,10 +25,32 @@ def delay_message():
     input("\nPress Enter to continue...")
     
 def create_health_bar(current_health, max_health, color):
+    """
+    Create a health car to allow for better visuals.
+
+    Parameters:
+    current_health(int): health of character
+    max_health(int): maximum health of character
+    color(str): color option from dictionary of colors
+
+    Returns a health bar as a string.
+    """
     health_bar = f"[{('|' * current_health).ljust(max_health)}]"
     return f"{colors[color]}{health_bar}{colors['RESET']}"
     
 def format_entity_info(name, current_health, max_health, bar_color, art=None):
+    """
+    Format and print out entity information in a more visually appealing manner.
+    
+    Parameters:
+    name(str): name of the character
+    current_health(int): current health of character
+    max_health(int): maximum health of character
+    bar_color: color option from dictionary of colors
+    art(str): formatted ascii art of character
+
+    Returns a string of all attributes of character packed nicely.
+    """
     colored_health_bar = create_health_bar(current_health, max_health, bar_color)
     
     art_display = f"{art}\n" if art else ""
