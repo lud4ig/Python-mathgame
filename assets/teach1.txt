@@ -1,5 +1,6 @@
 Let's start off from the basics 
-Adding 3 numbers together ======================================= 
+Adding 3 numbers together 
+======================================= 
 Remember these 3 points: 
 1: Start from left to right 
 2: Add the first 2 numbers 
