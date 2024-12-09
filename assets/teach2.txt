@@ -1,6 +1,6 @@
 BODMAS stands for Brackets, Orders, Division, Multiplication, Addition, Subtraction 
 In all math equations, follow the BODMAS rule. 
-1st: (B) - Solve the bractets first 
+1st: (B) - Solve the brackets first 
 2nd: (O) - Handle any power or square roots 
 3rd: (DM) - Handle division and multiplication from left to right (as per taught by the previous mage) 
 4th: (AS) - Handle addition and subtraction from left to right (as per taught by the previous mage 
