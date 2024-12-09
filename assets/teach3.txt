@@ -12,8 +12,8 @@ Lisa has 10 apples, she gave Sherry 4 apples. She then bought 5 apples but 3 wer
 - After give to friend: 10 -4 = 6 apples 
 - Bought apple: 6+5 = 11 
 - Remove rotten apples: 11-3 = 8
-This is how we determine that she only have 8 fresh apple left.
-Have you understood how to solve these type of problems? 
-Here's another example for you try on ur own. I won't be helping you this time though... 
+This is how we determine that she only has 8 fresh apples left.
+Have you understood how to solve these problems? 
+Here's another example for you try on your own. I won't be helping you this time though... 
 Sarah has 18 marbles. She have 5 friends and give each friend 2 marbles. How many marbles does she have left? 
 Ans: 8 marbles left. 
