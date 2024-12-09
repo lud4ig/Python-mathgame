@@ -176,7 +176,7 @@
         "2":{"A bag of sugar weighs 100g. John buys 20 bags of sugar.\nHow much sugar has John bought in kilograms?\nHint:1 kilogram = 1000 grams":2},
         "3":{"An Airbus A350 cruises at a speed of 500 knots.\nIt's landing speed is a fifth of it's cruising speed + 50.\nWhat is the landing speed (in knots) of the A350? ":150},
         "4":{"The Tokaido Shinkansen travels from Tokyo to Shin-Osaka in 2 hours.\nThe Tohoku Shinkansen travels from Tokyo to Aomori in roughly twice the amount of time.\nHow long does it take to travel from Tokyo to Aomori in minutes?\nHint: 1 hour = 60 minutes":240},
-        "5":{"Elden Ring has sold 25 million copies since its release. In comparison, Minecraft has sold 300 million copies since its release.\nFill in the blank:\nMinecrft has sold ___ times as many copies as elden ring.":12},
+        "5":{"Elden Ring has sold 25 million copies since its release. In comparison, Minecraft has sold 300 million copies since its release.\nFill in the blank:\nMinecraft has sold ___ times as many copies as elden ring.":12},
         "6":{"The distance of 4 towns from each other is as follows:\nScreen -> Ring = 30km\nRing -> Pen = 25 km\nPen -> King = 45 km\nWhat is the distance John needs to travel (in km) if he wants to get to King from Screen?":100},
         "7":{"'Never Gonna Give You Up' by Rick Astley has 1.5 billion views on youtube. In comparison, 'Renai Circulation' has 150 million views on youtube.\n'Never Gonna Give You Up has ___ times more views than 'Renai Circulation'?\nHint: 1.5 billion = 1500 million":10},
         "8":{"A ream of paper contains 400 sheets. Stanley buys 3 reams, and uses three-quarters of it.\nHow many sheets of paper does Stanley have left?\nHint: 1 - 3/4 = 1/4!":300},
