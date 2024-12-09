@@ -1,7 +1,7 @@
 Here are some points you should remember when solving problem statements:  
 -------------------------------------------------------------------------------------------------
 1: Read the question carefully, understand what the question is asking for. 
-2: Identify the key infromation, what is given?
+2: Identify the key information, what is given?
 3: Highlight important keywords. [Add, take away, give, divided by, twice, half, one-third, etc]. 
 4: Solve step by step 
 5: Always remember to check your working before submitting 
