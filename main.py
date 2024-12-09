@@ -257,7 +257,7 @@ def play_game(maps, ADD_OTHER_FILES=True):
                     game_map[player_pos[0]][player_pos[1]] = 'P'  # Replace 'S' with a blank space
                 
             if game_map[player_pos[0]][player_pos[1]] == "H": # if a player steps on a healing tile
-                Heal_art = """
+                Heal_art = r"""
                         _|_
                          | 
                          |
