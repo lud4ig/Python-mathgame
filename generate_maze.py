@@ -14,9 +14,9 @@ def generate_maze():
     """
     for y in range(height):
         for x in range(width):
-            direction = random.choice(directions)
-            dx, dy = direction
-            if 0 <= x + dx < width and 0 <= y + dy < height:
+            direction = random.choice(directions) #selects from one of two directions
+            dx, dy = direction #unpacks the tuple
+            if 0 <= x + dx < width and 0 <= y + dy < height: #checks is move is within bounds
                 maze[y + dy][x + dx] = 'P'
 
 
@@ -43,15 +43,15 @@ def flood_fill(x, y, visited):
     
     This function does not return any values.
     """
-    stack = [(x, y)]
+    stack = [(x, y)] #initialize the stack
     while stack:
-        cx, cy = stack.pop()
-        if (cx, cy) not in visited:
-            visited.add((cx, cy))
+        cx, cy = stack.pop() #take the last item from the stack and assign it to cx and cy
+        if (cx, cy) not in visited: #checks if the cell has not already been visited
+            visited.add((cx, cy)) #add the cell to the set
             for dx, dy in moves:
-                nx, ny = cx + dx, cy + dy
-                if is_valid_move(nx, ny) and (nx, ny) not in visited:
-                    stack.append((nx, ny))
+                nx, ny = cx + dx, cy + dy # translation
+                if is_valid_move(nx, ny) and (nx, ny) not in visited: # check if translated coordinates are within bounds
+                    stack.append((nx, ny)) #add to the stack if so
 
 
 def ensure_connected():
@@ -64,19 +64,19 @@ def ensure_connected():
     for y in range(height):
         for x in range(width):
             if maze[y][x] == 'P':
-                flood_fill(x, y, visited)
-                break
+                flood_fill(x, y, visited) # run the flood_fill function on the first P that can be found
+                break # breaks the loop after the first P is found and flood_filled
         else:
             continue
         break
 
     for y in range(1, height - 1):
         for x in range(1, width - 1):
-            if maze[y][x] == 'P' and (x, y) not in visited:
+            if maze[y][x] == 'P' and (x, y) not in visited: #checks if a cell contains a P but has not yet been visited, aka checks if it's an isolated P
                 for dx, dy in moves:
                     nx, ny = x + dx, y + dy
-                    if is_valid_move(nx, ny) and (nx, ny) in visited:
-                        maze[y][x] = 'P'
+                    if is_valid_move(nx, ny) and (nx, ny) in visited: #if the move is valid and the neighboring cells have been visited
+                        maze[y][x] = 'P' # set them to P
                         break
 
 
@@ -91,18 +91,18 @@ def place_start_and_end():
     """
     start_x = random.randint(1, width - 2)
     start_y = random.randint(1, height - 2)
-    maze[start_y][start_x] = '@'
+    maze[start_y][start_x] = '@' #Places the start point at a random valid position in the maze
     
     max_distance = -1
-    end_x, end_y = start_x, start_y
+    end_x, end_y = start_x, start_y # initialize end point as the start point 
     for y in range(1, height - 1):
         for x in range(1, width - 1):
             if maze[y][x] == 'P':
-                distance = abs(x - start_x) + abs(y - start_y)
+                distance = abs(x - start_x) + abs(y - start_y) # calculate the manhattan distance |x2 - x1| + |y2 - y1|
                 if distance > max_distance:
                     max_distance = distance
                     end_x, end_y = x, y
-    maze[end_y][end_x] = 'B'
+    maze[end_y][end_x] = 'B' # mark the boss point
     
     return start_x, start_y, end_x, end_y
 
@@ -123,32 +123,32 @@ def place_s_and_h(start_x, start_y, end_x, end_y):
     adj_start = []
     for dx, dy in moves:
         nx, ny = start_x + dx, start_y + dy # Pretty sure this will cause some issues later on
-        if is_valid_move(nx, ny):
+        if is_valid_move(nx, ny): #checks if there's a valid move P next to the start point
             adj_start.append((nx, ny))
 
     if adj_start:
-        s_points.append(random.choice(adj_start))
+        s_points.append(random.choice(adj_start)) #chooses one of the valid move P next to the start point
 
     adj_end = []
     for dx, dy in moves:
         nx, ny = end_x + dx, end_y + dy #Pretty sure this will cause some issues later on
-        if is_valid_move(nx, ny):
+        if is_valid_move(nx, ny): #checks if there's a valid move P next to the boss point
             adj_end.append((nx, ny))
 
     if adj_end:
-        h_points.append(random.choice(adj_end))
+        h_points.append(random.choice(adj_end)) #chooses one of the valid moves P next to the boss point
 
     while len(s_points) < 3:
         x = random.randint(1, width - 2)
         y = random.randint(1, height - 2)
         if maze[y][x] == 'P' and (x, y) not in s_points and (x, y) not in h_points:
-            s_points.append((x, y))
+            s_points.append((x, y)) #places the S points
 
     while len(h_points) < 2:
         x = random.randint(1, width - 2)
         y = random.randint(1, height - 2)
         if maze[y][x] == 'P' and (x, y) not in s_points and (x, y) not in h_points:
-            h_points.append((x, y))
+            h_points.append((x, y)) #places the H points
 
     for (sx, sy) in s_points:
         if maze[sy][sx] != '@' and maze[sy][sx] != 'B' and maze[sy][sx] != 'T':
